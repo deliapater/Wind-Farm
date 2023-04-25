@@ -13,4 +13,9 @@ class TurbineInspection extends Model
     {
         return $this->belongsTo(Component::class);
     }
+
+    public function turbine()
+    {
+        return $this->belongsTo(Turbine::class);
+    }
 }

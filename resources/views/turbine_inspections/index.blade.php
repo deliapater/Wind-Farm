@@ -11,17 +11,19 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Turbine ID</th>
                         <th>Component ID</th>
                         <th>Grade ID</th>
                     </tr>
-                <thead>
+                </thead>
                 <tbody>
                     @foreach($turbine_inspections as $turbine_inspection)
                         <tr>
-                            <td>{{ $turbine_inspection->turbine->id }}</td>
-                            <td>{{ $turbine_inspection->component->id }}</td>
-                            <td>{{ $turbine_inspection->grade->id }}</td>
+                            @if ($turbine_inspection->component)
+                                <td>{{ $turbine_inspection->component->id }}</td>
+                                <td>{{ $turbine_inspection->grade }}</td>
+                            @else
+                                <td>N/A</td>
+                            @endif 
                         </tr>
                     @endforeach
                 </tbody>

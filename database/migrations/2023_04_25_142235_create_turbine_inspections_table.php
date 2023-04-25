@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('turbine_id')->nullable();
             $table->unsignedBigInteger('component_id');
-            $table->integer('grade')->unsigned()->nullable();
+            $table->integer('grade')->unsigned()->default(1);
             $table->timestamps();
 
             $table->foreign('turbine_id')->references('id')->on('turbines')->onDelete('cascade');

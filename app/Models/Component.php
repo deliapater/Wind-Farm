@@ -16,6 +16,6 @@ class Component extends Model
 
     public function turbineInspection()
     {
-        return $this->hasMany(turbineInspection::class);
+        return $this->hasMany(TurbineInspection::class);
     }
 }
