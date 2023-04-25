@@ -14,8 +14,8 @@ class TurbineInspectionController extends Controller
      */
     public function index()
     {
-        $turbineInspections = TurbineInspection::all();
-        return view('turbine_inspection.index', compact('turbineInspections'));      
+        $turbineInspections = TurbineInspection::with(['turbine', 'component']);
+        return view('turbine_inspection.index', compact('turbine_inspections'));      
     }
 
     /**
