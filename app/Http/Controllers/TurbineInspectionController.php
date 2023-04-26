@@ -17,7 +17,8 @@ class TurbineInspectionController extends Controller
     public function index()
     {
         $turbine_inspections = TurbineInspection::with(['turbine', 'component'])->get();
-        return view('turbine_inspections.index', compact('turbine_inspections'));      
+        return response()->json($turbine_inspections);
+        // return view('turbine_inspections.index', compact('turbine_inspections'));      
     }
 
     /**

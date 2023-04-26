@@ -14,9 +14,8 @@ use App\Http\Controllers\TurbineInspectionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::resource('turbine_inspections', TurbineInspectionController::class);
+
+Route::get('/turbine_inspections', function () {
+    return view('turbine_inspections.index');
 });
-
-Route::resource('turbine_inspections', TurbineInspectionController::class);
-

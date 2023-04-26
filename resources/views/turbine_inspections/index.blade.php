@@ -6,29 +6,18 @@
         <link rel="stylesheet" href="{{ asset('css/app.css')}}">
     </head>
     <body>
-        <div class="container">
-            <h1>Turbine Inspections</h1>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Component ID</th>
-                        <th>Grade ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($turbine_inspections as $turbine_inspection)
-                        <tr>
-                            @if ($turbine_inspection->component)
-                                <td>{{ $turbine_inspection->component->id }}</td>
-                                <td>{{ $turbine_inspection->grade }}</td>
-                            @else
-                                <td>N/A</td>
-                            @endif 
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+    @extends('layouts.app')
+
+    @section('content')
+        <div id="app"></div>
+    @endsection
+    
+    @section('scripts')
         <script src="{{ asset('js/app.js') }}"></script>
+    @endsection
+
+    @section('styles')
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endsection
     </body>
 </html>
