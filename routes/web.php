@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('turbine_inspections', [TurbineInspectionController::class, 'index']);
+Route::resource('turbine_inspections', TurbineInspectionController::class);
 

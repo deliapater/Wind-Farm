@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\TurbineInspection;
+use App\Models\Turbine;
+use App\Models\Component;
 use Illuminate\Http\Request;
 
 class TurbineInspectionController extends Controller
@@ -25,7 +27,10 @@ class TurbineInspectionController extends Controller
      */
     public function create()
     {
-        //
+        $turbines = Turbine::all();
+        $components = Component::all();
+
+        return view('turbine_inspections.create', compact('turbines', 'components'));
     }
 
     /**
@@ -36,7 +41,15 @@ class TurbineInspectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'turbine_id' => 'required',
+            'component_id' => 'required',
+            'grade' => 'nullable|integer'
+        ]);
+
+        TurbineInspection::create($data);
+
+        return redirect()->route('turbine_inspections.index');
     }
 
     /**
