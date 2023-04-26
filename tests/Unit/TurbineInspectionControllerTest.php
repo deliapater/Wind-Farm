@@ -33,7 +33,7 @@ class TurbineInspectionControllerTest extends TestCase
         $controller = new TurbineInspectionController();
 
         // // call index method and get response
-        $response = $this->get('/turbine_inspections');
+        $response = $this->get('/');
         $response->assertStatus(200);
         $response->assertSee('Turbine Inspections');
         $response->assertViewIs('turbine_inspections.index');
@@ -51,8 +51,8 @@ class TurbineInspectionControllerTest extends TestCase
         $component = Component::factory()->create(['turbine_id' => $turbine->id]);
 
         // Call the create method and assert that the view is returned
-        $response = $this->get('/turbine_inspections/create');
+        $response = $this->get('/create');
     }
 
-    //TODO STORE TEST
+    //TODO STORE TESTS
 }
