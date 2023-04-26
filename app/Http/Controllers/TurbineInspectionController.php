@@ -44,7 +44,7 @@ class TurbineInspectionController extends Controller
         $data = $request->validate([
             'turbine_id' => 'required',
             'component_id' => 'required',
-            'grade' => 'nullable|integer'
+            'grade' => 'integer'
         ]);
 
         TurbineInspection::create($data);

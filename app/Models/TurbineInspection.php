@@ -9,6 +9,12 @@ class TurbineInspection extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'component_id',
+        'turbine_id',
+        'grade'
+    ];
+
     public function component()
     {
         return $this->belongsTo(Component::class);
