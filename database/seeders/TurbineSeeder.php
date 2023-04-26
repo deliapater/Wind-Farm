@@ -27,7 +27,7 @@ class TurbineSeeder extends Seeder
 
             foreach ($components as $component) {
                 // Create 3 inspections for each component
-                TurbineInspection::factory()->count(3)->create(['component_id' => $component->id]);
+                TurbineInspection::factory()->count(3)->create(['component_id' => $component->id, 'turbine_id' => $turbine->id]);
             }
         }
     }

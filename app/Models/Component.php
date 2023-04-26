@@ -9,7 +9,7 @@ class Component extends Model
 {
     use HasFactory;
 
-    public function turbinee()
+    public function turbine()
     {
         return $this->belongsTo(Turbine::class);
     }
