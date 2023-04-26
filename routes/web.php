@@ -14,8 +14,10 @@ use App\Http\Controllers\TurbineInspectionController;
 |
 */
 
-// Route::resource('turbine_inspections', TurbineInspectionController::class);
-
-Route::get('/turbine_inspections', function () {
+Route::get('/', function () {
     return view('turbine_inspections.index');
 });
+
+Route::get('/{any}', function () {
+    return view('layouts.app');
+})->where('any', '.*');

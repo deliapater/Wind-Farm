@@ -23,7 +23,7 @@ const TurbineInspectionTable = () => {
     return (
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-4 text-center">Turbine Inspections</h1>
-            <table className="w-full">
+            <table className="w-full rounded">
                 <thead>
                     <tr>
                         <th className="bg-gray-100 border text-left px-8 py-4">Turbine Name</th>
