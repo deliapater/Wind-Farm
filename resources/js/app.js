@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
 import TurbineInspectionTable from './components/TurbineInspection/TurbineInspectionTable';
 import TurbineInspectionForm from './components/TurbineInspection/TurbineInspectionForm';
 

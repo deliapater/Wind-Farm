@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Turbine Inspections</title>
-        <link rel="stylesheet" href="{{ asset('css/app.css')}}">
+        <link rel="stylesheet" href="dist/styles.css?v=1.0" />
     </head>
     <body>
     @extends('layouts.app')
@@ -17,7 +17,7 @@
     @endsection
 
     @section('styles')
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('resources/css/app.css') }}" rel="stylesheet">
     @endsection
     </body>
 </html>

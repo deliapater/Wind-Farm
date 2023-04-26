@@ -6465,6 +6465,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var gradeLabels = ['Perfect', 'Minor Issue', 'Moderate Issue', 'Serious Issue', 'Completely Broken/Missing'];
 var TurbineInspectionTable = function TurbineInspectionTable() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -6483,31 +6484,40 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
     });
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "container mx-auto px-4 py-8",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      className: "text-3xl font-bold mb-4 text-center",
       children: "Turbine Inspections"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+      className: "w-full",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+            className: "bg-gray-100 border text-left px-8 py-4",
             children: "Turbine Name"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+            className: "bg-gray-100 border text-left px-8 py-4",
             children: "Component Name"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+            className: "bg-gray-100 border text-left px-8 py-4",
             children: "Grade"
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
-        children: turbineInspections && turbineInspections.map(function (turbineInspections) {
-          var _turbineInspections$t, _turbineInspections$c;
+        children: turbineInspections && turbineInspections.map(function (turbineInspection) {
+          var _turbineInspection$tu, _turbineInspection$co;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-              children: (_turbineInspections$t = turbineInspections.turbine) === null || _turbineInspections$t === void 0 ? void 0 : _turbineInspections$t.name
+              className: "border px-8 py-4",
+              children: (_turbineInspection$tu = turbineInspection.turbine) === null || _turbineInspection$tu === void 0 ? void 0 : _turbineInspection$tu.name
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-              children: (_turbineInspections$c = turbineInspections.component) === null || _turbineInspections$c === void 0 ? void 0 : _turbineInspections$c.name
+              className: "border px-8 py-4",
+              children: (_turbineInspection$co = turbineInspection.component) === null || _turbineInspection$co === void 0 ? void 0 : _turbineInspection$co.name
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-              children: turbineInspections.grade
+              className: "border px-8 py-4",
+              children: gradeLabels[turbineInspection.grade - 1]
             })]
-          }, turbineInspections.id);
+          }, turbineInspection.id);
         })
       })]
     })]

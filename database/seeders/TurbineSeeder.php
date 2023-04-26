@@ -24,20 +24,20 @@ class TurbineSeeder extends Seeder
         $turbine3 = Turbine::factory()->create(['name' => 'Turbine C']);
 
         // Create 4 components for each turbine
-        $componentA1 = Component::factory()->create(['turbine_id' => $turbine1->id, 'name' => 'Component A1']);
-        $componentA2 = Component::factory()->create(['turbine_id' => $turbine1->id, 'name' => 'Component A2']);
-        $componentA3 = Component::factory()->create(['turbine_id' => $turbine1->id, 'name' => 'Component A3']);
-        $componentA4 = Component::factory()->create(['turbine_id' => $turbine1->id, 'name' => 'Component A4']);
+        $componentA1 = Component::factory()->create(['turbine_id' => $turbine1->id, 'name' => 'Blade']);
+        $componentA2 = Component::factory()->create(['turbine_id' => $turbine1->id, 'name' => 'Rotor']);
+        $componentA3 = Component::factory()->create(['turbine_id' => $turbine1->id, 'name' => 'Hub']);
+        $componentA4 = Component::factory()->create(['turbine_id' => $turbine1->id, 'name' => 'Generator']);
 
-        $componentB1 = Component::factory()->create(['turbine_id' => $turbine2->id, 'name' => 'Component B1']);
-        $componentB2 = Component::factory()->create(['turbine_id' => $turbine2->id, 'name' => 'Component B2']);
-        $componentB3 = Component::factory()->create(['turbine_id' => $turbine2->id, 'name' => 'Component B3']);
-        $componentB4 = Component::factory()->create(['turbine_id' => $turbine2->id, 'name' => 'Component B4']);
+        $componentB1 = Component::factory()->create(['turbine_id' => $turbine2->id, 'name' => 'Blade']);
+        $componentB2 = Component::factory()->create(['turbine_id' => $turbine2->id, 'name' => 'Rotor']);
+        $componentB3 = Component::factory()->create(['turbine_id' => $turbine2->id, 'name' => 'Hub']);
+        $componentB4 = Component::factory()->create(['turbine_id' => $turbine2->id, 'name' => 'Generator']);
 
-        $componentC1 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Component C1']);
-        $componentC2 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Component C2']);
-        $componentC3 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Component C3']);
-        $componentC4 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Component C4']);
+        $componentC1 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Blade']);
+        $componentC2 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Rotor']);
+        $componentC3 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Hub']);
+        $componentC4 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Generator']);
 
         // Create inspections for each component
         TurbineInspection::factory()->create(['component_id' => $componentA1->id, 'turbine_id' => $turbine1->id, 'grade' => 1]);
