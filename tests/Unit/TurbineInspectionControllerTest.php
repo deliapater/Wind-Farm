@@ -52,7 +52,6 @@ class TurbineInspectionControllerTest extends TestCase
 
         // Call the create method and assert that the view is returned
         $response = $this->get('/create');
+        $response->assertStatus(200); 
     }
-
-    //TODO STORE TESTS
 }
