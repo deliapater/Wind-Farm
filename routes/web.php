@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('turbine_inspections.index');
 });
 
+Route::get('/create', function () {
+    return view('turbine_inspections.store');
+});
+
 Route::get('/{any}', function () {
     return view('layouts.app');
 })->where('any', '.*');
