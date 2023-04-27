@@ -9,16 +9,24 @@ const TurbineInspectionForm = () => {
 
     const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            [e.target.name]: e.target.value,
-        }));
-    };
-
-    const handleGradeChange = (event) => {
-        setGradeId(event.target.value);
-    };
+    const turbinesOptions = [
+        { label: "Turbine A", value: 1 },
+        { label: "Turbine B", value: 2 },
+        { label: "Turbine C", value: 3 },
+    ];
+    const componentsOptions = [
+        { label: "Blade", value: 1 },
+        { label: "Rotor", value: 2 },
+        { label: "Hub", value: 3 },
+        { label: "Generator", value: 4 },
+    ];
+    const gradeOptions = [
+        { label: "Perfect", value: 1 },
+        { label: "Minor Issue", value: 2 },
+        { label: "Moderate Issue", value: 3 },
+        { label: "Serious Issue", value: 4 },
+        { label: "Completely Broken/Missing", value: 5 },
+    ];
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -26,14 +34,13 @@ const TurbineInspectionForm = () => {
         const data = {
             turbine_id: turbineId,
             component_id: componentId,
-            grade: parseInt(grade),
+            grade: grade,
         };
 
         axios
             .post("/api/turbine_inspections", data)
             .then((response) => {
                 // Handle successful response
-                console.log(response.data);
             })
             .catch((error) => {
                 // Handle error
@@ -56,40 +63,66 @@ const TurbineInspectionForm = () => {
                 <label htmlFor="turbineId" className="block mb-1">
                     Turbine ID:
                 </label>
-                <input
-                    type="text"
+                <select
                     id="turbineId"
                     value={turbineId}
-                    onChange={(e) => setTurbineId(e.target.value)}
+                    onChange={(e) => setTurbineId(parseInt(e.target.value, 10))}
                     required
                     className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                >
+                    <option disabled value="">
+                        Select a Turbine
+                    </option>
+                    {turbinesOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
             </div>
             <div className="mb-4">
                 <label htmlFor="componentId" className="block mb-1">
                     Component ID:
                 </label>
-                <input
-                    type="text"
+                <select
                     id="componentId"
                     value={componentId}
-                    onChange={(e) => setComponentId(e.target.value)}
+                    onChange={(e) =>
+                        setComponentId(parseInt(e.target.value, 10))
+                    }
                     required
                     className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                >
+                    <option disabled value="">
+                        Select a Component
+                    </option>
+                    {componentsOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
             </div>
             <div className="mb-4">
                 <label htmlFor="grade" className="block mb-1">
                     Grade:
                 </label>
-                <input
-                    type="number"
+                <select
                     id="grade"
                     value={grade}
-                    onChange={(e) => setGrade(e.target.value)}
+                    onChange={(e) => setGrade(parseInt(e.target.value, 10))}
                     required
                     className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                >
+                    <option disabled value="">
+                        Select a Grade
+                    </option>
+                    {gradeOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
             </div>
             <button
                 type="submit"
