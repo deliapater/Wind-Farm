@@ -6641,12 +6641,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var gradeLabels = ['Perfect', 'Minor Issue', 'Moderate Issue', 'Serious Issue', 'Completely Broken/Missing'];
+var gradeLabels = ["Perfect", "Minor Issue", "Moderate Issue", "Serious Issue", "Completely Broken/Missing"];
 var TurbineInspectionTable = function TurbineInspectionTable() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     turbineInspections = _useState2[0],
     setTurbineInspections = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    searchInput = _useState4[0],
+    setSearchInput = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    searchResults = _useState6[0],
+    setSearchResults = _useState6[1];
+  var handleSearchInputChange = function handleSearchInputChange(event) {
+    setSearchInput(event.target.value);
+  };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/turbine_inspections').then(function (response) {
       setTurbineInspections(response.data);
@@ -6654,6 +6665,13 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
       console.log(error);
     });
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var filteredInspections = turbineInspections.filter(function (turbineInspection) {
+      var _turbineInspection$tu, _turbineInspection$co;
+      return ((_turbineInspection$tu = turbineInspection.turbine) === null || _turbineInspection$tu === void 0 ? void 0 : _turbineInspection$tu.name.toLowerCase().includes(searchInput.toLowerCase())) || ((_turbineInspection$co = turbineInspection.component) === null || _turbineInspection$co === void 0 ? void 0 : _turbineInspection$co.name.toLowerCase().includes(searchInput.toLowerCase()));
+    });
+    setSearchResults(filteredInspections);
+  }, [searchInput, turbineInspections]);
   if (!turbineInspections) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       children: "Loading..."
@@ -6664,6 +6682,12 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
       className: "text-3xl font-bold mb-4 text-center",
       children: "Turbine Inspections"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+      type: "text",
+      value: searchInput,
+      onChange: handleSearchInputChange,
+      placeholder: "Search for a Turbine or Component Name ...",
+      className: "px-4 py-2 mb-4 rounded w-full"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
       className: "w-full rounded",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
@@ -6683,24 +6707,24 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
-        children: turbineInspections && turbineInspections.map(function (turbineInspection) {
-          var _turbineInspection$tu, _turbineInspection$co;
+        children: searchResults && searchResults.map(function (turbineInspection) {
+          var _turbineInspection$tu2, _turbineInspection$co2;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
               className: "border px-8 py-4",
-              children: (_turbineInspection$tu = turbineInspection.turbine) === null || _turbineInspection$tu === void 0 ? void 0 : _turbineInspection$tu.name
+              children: (_turbineInspection$tu2 = turbineInspection.turbine) === null || _turbineInspection$tu2 === void 0 ? void 0 : _turbineInspection$tu2.name
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
               className: "border px-8 py-4",
-              children: (_turbineInspection$co = turbineInspection.component) === null || _turbineInspection$co === void 0 ? void 0 : _turbineInspection$co.name
+              children: (_turbineInspection$co2 = turbineInspection.component) === null || _turbineInspection$co2 === void 0 ? void 0 : _turbineInspection$co2.name
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
               className: "border px-8 py-4",
               children: gradeLabels[turbineInspection.grade - 1]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
               className: "border px-8 py-4",
-              children: new Date(turbineInspection.created_at).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+              children: new Date(turbineInspection.created_at).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
               })
             })]
           }, turbineInspection.id);
