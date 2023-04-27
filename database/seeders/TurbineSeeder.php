@@ -44,5 +44,15 @@ class TurbineSeeder extends Seeder
         TurbineInspection::factory()->create(['component_id' => $componentA2->id, 'turbine_id' => $turbine1->id, 'grade' => 4]);
         TurbineInspection::factory()->create(['component_id' => $componentA3->id, 'turbine_id' => $turbine1->id, 'grade' => 1]);
         TurbineInspection::factory()->create(['component_id' => $componentA4->id, 'turbine_id' => $turbine1->id, 'grade' => 2]);
+
+        TurbineInspection::factory()->create(['component_id' => $componentB1->id, 'turbine_id' => $turbine2->id, 'grade' => 1]);
+        TurbineInspection::factory()->create(['component_id' => $componentB2->id, 'turbine_id' => $turbine2->id, 'grade' => 1]);
+        TurbineInspection::factory()->create(['component_id' => $componentB3->id, 'turbine_id' => $turbine2->id, 'grade' => 1]);
+        TurbineInspection::factory()->create(['component_id' => $componentB4->id, 'turbine_id' => $turbine2->id, 'grade' => 3]);
+
+        TurbineInspection::factory()->create(['component_id' => $componentC1->id, 'turbine_id' => $turbine3->id, 'grade' => 4]);
+        TurbineInspection::factory()->create(['component_id' => $componentC2->id, 'turbine_id' => $turbine3->id, 'grade' => 4]);
+        TurbineInspection::factory()->create(['component_id' => $componentC3->id, 'turbine_id' => $turbine3->id, 'grade' => 3]);
+        TurbineInspection::factory()->create(['component_id' => $componentC4->id, 'turbine_id' => $turbine3->id, 'grade' => 2]);
     }
 }
