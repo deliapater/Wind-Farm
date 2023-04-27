@@ -68,3 +68,43 @@ composer install --ignore-platform-reqs
 
 ## Your Notes
 This is a place for you to add your notes, plans, thinking and any feedback you have for us of the task, please feel free to include whatever you like here, we'll make sure to read it. 
+
+### Aditional Setup
+```bash
+Server
+$ php artisan serve
+
+Sail
+$ ./vendor/bin/sail up
+
+Unit Tests
+$ mysql -u testuser -p testpassword
+$ php artisan test
+
+URL
+http://localhost:8000/
+
+Tailwind CSS
+$ npx tailwindcss build resources/css/app.css -o public/css/app.css
+
+Client
+$ npm run watch
+
+DB Tables
+$ php artisan migrate
+
+DB Seeds
+$ php artisan db:seed --class=TurbineSeeder  
+
+Mysql
+$ mysql -u sail -p password
+```
+
+The application it has been build with 3 entity models: Turbine, Component and TurbineInspection. A Turbine can have multiple Components and each Component can have multiple Inspections. The server-side of the application has been made with Laravel, the client-side with React.js and styling with Tailwind CSS. 
+
+I have created a view that contains the turbine inspection list which contains a table and a search bar; and another view with the turbine inspection form. 
+
+For the future I'm planning to implement API authentication, pagination for the list view, functionality for editing and deleting each record; also to add a modal inside the form to create a turbine and its components and then dynamically bind them to the selection dropdown inside turbine inspection form. This is because at the moment the options for selecting the turbines and components are hardcoded due to time constraints.
+
+PD: I had tons of fun planing, designing, building and testing this project.
+
