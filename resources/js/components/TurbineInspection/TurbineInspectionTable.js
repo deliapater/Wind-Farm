@@ -29,6 +29,7 @@ const TurbineInspectionTable = () => {
                         <th className="bg-gray-100 border text-left px-8 py-4">Turbine Name</th>
                         <th className="bg-gray-100 border text-left px-8 py-4">Component Name</th>
                         <th className="bg-gray-100 border text-left px-8 py-4">Grade</th>
+                        <th className="bg-gray-100 border text-left px-8 py-4">Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,13 @@ const TurbineInspectionTable = () => {
                             <td className="border px-8 py-4">{turbineInspection.turbine?.name}</td>
                             <td className="border px-8 py-4">{turbineInspection.component?.name}</td>
                             <td className="border px-8 py-4">{gradeLabels[turbineInspection.grade - 1]}</td>
+                            <td className="border px-8 py-4">
+                            {new Date(turbineInspection.created_at).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                            })}
+                            </td>
                         </tr>
                     ))}
                 </tbody>

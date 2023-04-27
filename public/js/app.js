@@ -6466,7 +6466,8 @@ var Navbar = function Navbar() {
     className: "bg-black py-3 m-4 rounded",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "container mx-auto flex items-center justify-between",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "flex items-center",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
           to: "/",
           className: "text-white px-4 py-2 rounded hover:bg-gray-700",
@@ -6475,17 +6476,6 @@ var Navbar = function Navbar() {
           to: "/create",
           className: "text-white px-4 py-2 rounded hover:bg-gray-700 ml-4",
           children: "Add Inspection"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "flex items-center",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-          to: "/login",
-          className: "text-white px-4 py-2 rounded hover:bg-gray-700",
-          children: "Login"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-          to: "/register",
-          className: "text-white px-4 py-2 rounded hover:bg-gray-700 ml-4",
-          children: "Register"
         })]
       })]
     })
@@ -6687,6 +6677,9 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
             className: "bg-gray-100 border text-left px-8 py-4",
             children: "Grade"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+            className: "bg-gray-100 border text-left px-8 py-4",
+            children: "Date"
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
@@ -6702,6 +6695,13 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
               className: "border px-8 py-4",
               children: gradeLabels[turbineInspection.grade - 1]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+              className: "border px-8 py-4",
+              children: new Date(turbineInspection.created_at).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })
             })]
           }, turbineInspection.id);
         })
