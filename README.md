@@ -100,7 +100,7 @@ Mysql
 $ mysql -u sail -p password
 ```
 
-The application it has been build with 3 entity models: Turbine, Component and TurbineInspection. A Turbine can have multiple Components and each Component can have multiple Inspections. The server-side of the application has been made with Laravel, the client-side with React.js and styling with Tailwind CSS. 
+The application has been built with three entity models: Turbine, Component and TurbineInspection. A Turbine can have multiple Components and each Component can have multiple Inspections. The server-side of the application has been made with Laravel, the client-side with React.js and styling with Tailwind CSS. 
 
 I have created a view that contains the turbine inspection list which contains a table and a search bar; and another view with the turbine inspection form. 
 
