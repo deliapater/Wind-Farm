@@ -7193,7 +7193,7 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
     });
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "container ml-10mx-auto px-4 py-8",
+    className: "container mx-auto px-4 py-8",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
       className: "text-3xl font-bold mb-4 text-center",
       children: "Turbine Inspections"
