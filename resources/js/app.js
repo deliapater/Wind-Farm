@@ -20,6 +20,7 @@ const App = () => {
 
 const RedirectToTurbineInspections = () => {
   const navigate = useNavigate();
+  
   React.useEffect(() => {
     navigate('/');
   }, [navigate]);
