@@ -14,57 +14,37 @@ const gradeLabels = [
 const TurbineInspectionTable = () => {
     const [turbineInspections, setTurbineInspections] = useState([]);
     const [searchInput, setSearchInput] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
+    const [totalPages, setTotalPages] = useState(0)
+    const [paginationData, setPaginationData] = useState({});
+    // const [isLoading, setIsloading] = useState(true);
 
     const handleSearchInputChange = (event) => {
         setSearchInput(event.target.value);
-    };
-
-    useEffect(() => {
-        axios
-            .get("/api/turbine_inspections")
-            .then((response) => {
-                setTurbineInspections(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
-
-    useEffect(() => {
-        const filteredInspections = turbineInspections.filter(
-            (turbineInspection) =>
-                turbineInspection.turbine?.name
-                    .toLowerCase()
-                    .includes(searchInput.toLowerCase()) ||
-                turbineInspection.component?.name
-                    .toLowerCase()
-                    .includes(searchInput.toLowerCase())
-        );
-        setSearchResults(filteredInspections);
         setCurrentPage(1);
-    }, [searchInput, turbineInspections]);
+    };
 
-    // Calculate the items to display for the current page
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
+    const fetchTurbineInspections = async (page = 1, search="") => {
+        try {
+            const response = await axios.get("/api/turbine_inspections", {
+                params: {
+                    page,
+                    search
+                },
+            });
+            console.log("API Response:", response.data);
 
-    const totalPages = Math.ceil(searchResults.length / itemsPerPage);
-
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
+            setTurbineInspections(response.data.data);
+            setCurrentPage(response.data.current_page);
+            setTotalPages(response.data.last_page);
+        } catch (error) {
+            console.log(error);
         }
     };
 
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
+    useEffect(() => {
+        fetchTurbineInspections(currentPage, searchInput);
+    }, [currentPage, searchInput]);
 
     if (!turbineInspections) {
         return <div>Loading...</div>;
@@ -108,7 +88,8 @@ const TurbineInspectionTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentItems.map((turbineInspection) => (
+                    {turbineInspections &&
+                    turbineInspections.map((turbineInspection) => (
                             <tr key={turbineInspection.id}>
                                 <td className="border px-8 py-4">
                                     {turbineInspection.turbine?.name}
@@ -133,29 +114,21 @@ const TurbineInspectionTable = () => {
                 </tbody>
             </table>
 
-            <div className="flex justify-between items-center mt-4">
+            <div className="flex justify-center mt-4">
                 <button
-                    onClick={handlePreviousPage}
+                    onClick={() => setCurrentPage(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={`px-4 py-2 rounded ${
-                        currentPage === 1
-                        ? "bg-gray-300 text-gray-500"
-                        : "bg-blue-500 text-white hover:bg-blue-600"
-                    }`}
+                    className={"mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"}
                 >
                     Previous 
                 </button>
-                <span>
-                    Page {currentPage} of {totalPages}
+                <span className="mx-2 py-2 px-4">
+                   Page {currentPage} of {totalPages}
                 </span>
                 <button
-                    onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                    className={`px-4 py-2 rounded ${
-                        currentPage === totalPages
-                        ? "bg-gray-300 text-gray-500"
-                        : "bg-blue-500 text-white hover:bg-blue-600"
-                    }`}
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={currentPage >= totalPages}
+                    className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
                 >
                     Next
                 </button>

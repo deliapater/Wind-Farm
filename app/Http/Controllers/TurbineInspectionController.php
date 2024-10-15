@@ -14,11 +14,21 @@ class TurbineInspectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $turbine_inspections = TurbineInspection::with(['turbine', 'component'])->get();
+        $query = TurbineInspection::with(['turbine', 'component']);
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+
+            $query->whereHas('turbine', function ($q) use ($search) {
+                $q->where('name', 'like', '%' .$search . '%');
+            })->orWhereHas('component', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+        $turbine_inspections = $query->paginate(10);
         return response()->json($turbine_inspections);
-        // return view('turbine_inspections.index', compact('turbine_inspections'));      
     }
 
     /**
