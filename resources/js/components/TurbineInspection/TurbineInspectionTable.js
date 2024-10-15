@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Spinner from "./Spinner"
 
 const gradeLabels = [
     "Perfect",
@@ -17,7 +18,7 @@ const TurbineInspectionTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0)
     const [paginationData, setPaginationData] = useState({});
-    // const [isLoading, setIsloading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
     const handleSearchInputChange = (event) => {
         setSearchInput(event.target.value);
@@ -25,6 +26,7 @@ const TurbineInspectionTable = () => {
     };
 
     const fetchTurbineInspections = async (page = 1, search="") => {
+        setLoading(true);
         try {
             const response = await axios.get("/api/turbine_inspections", {
                 params: {
@@ -37,8 +39,10 @@ const TurbineInspectionTable = () => {
             setTurbineInspections(response.data.data);
             setCurrentPage(response.data.current_page);
             setTotalPages(response.data.last_page);
+            setLoading(false);
         } catch (error) {
             console.log(error);
+            setLoading(false);
         }
     };
 
@@ -46,9 +50,9 @@ const TurbineInspectionTable = () => {
         fetchTurbineInspections(currentPage, searchInput);
     }, [currentPage, searchInput]);
 
-    if (!turbineInspections) {
-        return <div>Loading...</div>;
-    }
+    // if (!turbineInspections) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -70,6 +74,12 @@ const TurbineInspectionTable = () => {
                     />
                 </div>
             </div>
+            {loading ? (
+
+                    <Spinner />
+  
+            ) : (
+                <>
             <table className="w-full rounded-full">
                 <thead>
                     <tr>
@@ -133,6 +143,8 @@ const TurbineInspectionTable = () => {
                     Next
                 </button>
             </div>
+            </>
+                 )}
         </div>
     );
 };
