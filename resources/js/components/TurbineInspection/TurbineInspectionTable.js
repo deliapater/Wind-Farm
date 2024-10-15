@@ -15,6 +15,8 @@ const TurbineInspectionTable = () => {
     const [turbineInspections, setTurbineInspections] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
 
     const handleSearchInputChange = (event) => {
         setSearchInput(event.target.value);
@@ -42,7 +44,27 @@ const TurbineInspectionTable = () => {
                     .includes(searchInput.toLowerCase())
         );
         setSearchResults(filteredInspections);
+        setCurrentPage(1);
     }, [searchInput, turbineInspections]);
+
+    // Calculate the items to display for the current page
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(searchResults.length / itemsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
 
     if (!turbineInspections) {
         return <div>Loading...</div>;
@@ -86,8 +108,7 @@ const TurbineInspectionTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {searchResults &&
-                        searchResults.map((turbineInspection) => (
+                    {currentItems.map((turbineInspection) => (
                             <tr key={turbineInspection.id}>
                                 <td className="border px-8 py-4">
                                     {turbineInspection.turbine?.name}
@@ -111,6 +132,34 @@ const TurbineInspectionTable = () => {
                         ))}
                 </tbody>
             </table>
+
+            <div className="flex justify-between items-center mt-4">
+                <button
+                    onClick={handlePreviousPage}
+                    disabled={currentPage === 1}
+                    className={`px-4 py-2 rounded ${
+                        currentPage === 1
+                        ? "bg-gray-300 text-gray-500"
+                        : "bg-blue-500 text-white hover:bg-blue-600"
+                    }`}
+                >
+                    Previous 
+                </button>
+                <span>
+                    Page {currentPage} of {totalPages}
+                </span>
+                <button
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    className={`px-4 py-2 rounded ${
+                        currentPage === totalPages
+                        ? "bg-gray-300 text-gray-500"
+                        : "bg-blue-500 text-white hover:bg-blue-600"
+                    }`}
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 };

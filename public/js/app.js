@@ -7229,6 +7229,11 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
     _useState6 = _slicedToArray(_useState5, 2),
     searchResults = _useState6[0],
     setSearchResults = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState8 = _slicedToArray(_useState7, 2),
+    currentPage = _useState8[0],
+    setCurrentPage = _useState8[1];
+  var itemsPerPage = 10;
   var handleSearchInputChange = function handleSearchInputChange(event) {
     setSearchInput(event.target.value);
   };
@@ -7245,7 +7250,24 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
       return ((_turbineInspection$tu = turbineInspection.turbine) === null || _turbineInspection$tu === void 0 ? void 0 : _turbineInspection$tu.name.toLowerCase().includes(searchInput.toLowerCase())) || ((_turbineInspection$co = turbineInspection.component) === null || _turbineInspection$co === void 0 ? void 0 : _turbineInspection$co.name.toLowerCase().includes(searchInput.toLowerCase()));
     });
     setSearchResults(filteredInspections);
+    setCurrentPage(1);
   }, [searchInput, turbineInspections]);
+
+  // Calculate the items to display for the current page
+  var indexOfLastItem = currentPage * itemsPerPage;
+  var indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  var currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
+  var totalPages = Math.ceil(searchResults.length / itemsPerPage);
+  var handleNextPage = function handleNextPage() {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  var handlePreviousPage = function handlePreviousPage() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
   if (!turbineInspections) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       children: "Loading..."
@@ -7290,7 +7312,7 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
-        children: searchResults && searchResults.map(function (turbineInspection) {
+        children: currentItems.map(function (turbineInspection) {
           var _turbineInspection$tu2, _turbineInspection$co2;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
@@ -7312,6 +7334,21 @@ var TurbineInspectionTable = function TurbineInspectionTable() {
             })]
           }, turbineInspection.id);
         })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "flex justify-between items-center mt-4",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        onClick: handlePreviousPage,
+        disabled: currentPage === 1,
+        className: "px-4 py-2 rounded ".concat(currentPage === 1 ? "bg-gray-300 text-gray-500" : "bg-blue-500 text-white hover:bg-blue-600"),
+        children: "Previous"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+        children: ["Page ", currentPage, " of ", totalPages]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        onClick: handleNextPage,
+        disabled: currentPage === totalPages,
+        className: "px-4 py-2 rounded ".concat(currentPage === totalPages ? "bg-gray-300 text-gray-500" : "bg-blue-500 text-white hover:bg-blue-600"),
+        children: "Next"
       })]
     })]
   });
