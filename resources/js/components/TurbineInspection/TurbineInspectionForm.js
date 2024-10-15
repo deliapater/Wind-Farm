@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import Spinner from "./Spinner"
+import { toast } from "react-toastify";
 
-const TurbineInspectionForm = () => {
+const TurbineInspectionForm = ({ onSuccess }) => {
     const [turbineId, setTurbineId] = useState("");
     const [componentId, setComponentId] = useState("");
     const [grade, setGrade] = useState("");
-    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -32,46 +29,26 @@ const TurbineInspectionForm = () => {
         { label: "Completely Broken/Missing", value: 5 },
     ];
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        setLoading(true)
+        try {
+            await axios.post("/api/turbine_inspections", {
+                turbine_id: turbineId,
+                component_id: componentId,
+                grade,
+            });
 
-        const data = {
-            turbine_id: turbineId,
-            component_id: componentId,
-            grade: grade,
-        };
-
-        axios
-            .post("/api/turbine_inspections", data)
-            .then((response) => {
-                // Handle successful response
-                toast.success("Turbine inspection submitted successfully!");
-                setLoading(false);
-                //Clear form inputs after submission
-                setTurbineId("");
-                setComponentId("");
-                setGrade("");
-                toast.onChange((payload) => {
-                    if(payload.status === "removed") {
-                        navigate("/");
-                    }
-                })
-            })
-            .catch((error) => {
-                // Handle error
-                toast.error("Error submitting turbine inspection. Please try again.")
-                console.error(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            })
+            onSuccess("Inspection submitted successfully!");
+            navigate("/");
+        } catch (error) {
+            console.error(error)
+            toast.error("Error submitting inspections!");
+        }
     };
 
     return (
         <>
-            {loading && <Spinner />}
             <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
                 <h1 className="text-3xl font-bold mb-4 text-center">
                     Turbine Inspection Form
@@ -85,7 +62,6 @@ const TurbineInspectionForm = () => {
                         value={turbineId}
                         onChange={(e) => setTurbineId(parseInt(e.target.value, 10))}
                         required
-                        disabled={loading}
                         className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option disabled value="">
@@ -109,7 +85,6 @@ const TurbineInspectionForm = () => {
                             setComponentId(parseInt(e.target.value, 10))
                         }
                         required
-                        disabled={loading}
                         className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option disabled value="">
@@ -131,7 +106,6 @@ const TurbineInspectionForm = () => {
                         value={grade}
                         onChange={(e) => setGrade(parseInt(e.target.value, 10))}
                         required
-                        disabled={loading}
                         className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option disabled value="">
@@ -146,13 +120,11 @@ const TurbineInspectionForm = () => {
                 </div>
                 <button
                     type="submit"
-                    disabled={loading}
                     className="bg-blue-500 text-white py-2 px-4 rounded"
                 >
                     Submit
                 </button>
             </form>
-            <ToastContainer />
         </>
 
     );
