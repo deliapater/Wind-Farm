@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faEye } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "./Spinner"
+import InspectionModal from "./InspectionModal"
 
 const gradeLabels = [
     "Perfect",
@@ -12,13 +13,15 @@ const gradeLabels = [
     "Completely Broken/Missing",
 ];
 
-const TurbineInspectionTable = () => {
+const TurbineInspectionTable = ({inspections}) => {
     const [turbineInspections, setTurbineInspections] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0)
     const [paginationData, setPaginationData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedInspection, setSelectedInspection] = useState(null)
 
     const handleSearchInputChange = (event) => {
         setSearchInput(event.target.value);
@@ -44,6 +47,16 @@ const TurbineInspectionTable = () => {
             console.log(error);
             setLoading(false);
         }
+    };
+
+    const handleRowClick = (inspection) => {
+        setSelectedInspection(inspection);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedInspection(null);
     };
 
     useEffect(() => {
@@ -115,10 +128,18 @@ const TurbineInspectionTable = () => {
                                         day: "numeric",
                                     })}
                                 </td>
+                                <td className="border px-2 py-4 text-center cursor-pointer" onClick={() => handleRowClick(turbineInspection)}>
+                                <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700" />
+                                </td>
                             </tr>
                         ))}
                 </tbody>
             </table>
+            <InspectionModal 
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            inspection={selectedInspection}
+            />
 
             <div className="flex justify-center mt-4">
                 <button
