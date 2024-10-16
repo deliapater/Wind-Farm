@@ -22,5 +22,5 @@ const Navbar = () => {
     </nav>
   );
 };
-
+Navbar.displayName = "Navbar";
 export default Navbar;

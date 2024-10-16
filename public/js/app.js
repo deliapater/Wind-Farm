@@ -6942,6 +6942,7 @@ var Navbar = function Navbar() {
     })
   });
 };
+Navbar.displayName = "Navbar";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Navbar);
 
 /***/ }),
