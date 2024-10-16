@@ -5,6 +5,7 @@ import { faSearch, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "./Spinner";
 import InspectionModal from "./InspectionModal";
 import ConfirmationModal from "./ConfirmationModal";
+import { ToastContainer, toast } from "react-toastify";
 
 const gradeLabels = [
     "Perfect",
