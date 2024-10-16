@@ -105,6 +105,16 @@ class TurbineInspectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $inspection = TurbineInspection::find($id);
+
+        if (!$inspection) {
+            return response()->json(['message' => 'Inspection not found'], 400);
+        }
+
+        //Perform a soft delete by setting a 'deleted_at' timestamp
+        $inspection->delete();
+
+        return response()->json(['message' => 'Inspection deleted successfully'], 204);
     }
+
 }

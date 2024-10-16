@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faEye } from "@fortawesome/free-solid-svg-icons";
-import Spinner from "./Spinner"
-import InspectionModal from "./InspectionModal"
+import { faSearch, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Spinner from "./Spinner";
+import InspectionModal from "./InspectionModal";
+import ConfirmationModal from "./ConfirmationModal";
 
 const gradeLabels = [
     "Perfect",
@@ -22,6 +23,8 @@ const TurbineInspectionTable = ({inspections}) => {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedInspection, setSelectedInspection] = useState(null)
+    const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+    const [inspectionToDelete, setInspectionToDelete] = useState(null);
 
     const handleSearchInputChange = (event) => {
         setSearchInput(event.target.value);
@@ -52,6 +55,27 @@ const TurbineInspectionTable = ({inspections}) => {
     const handleRowClick = (inspection) => {
         setSelectedInspection(inspection);
         setIsModalOpen(true);
+    };
+
+    const handleDeleteClick = (inspection) => {
+        setInspectionToDelete(inspection);
+        setIsConfirmationModalOpen(true);
+    };
+
+    const confirmDelete = async () => {
+        if (inspectionToDelete) {
+            try {
+                await axios.delete(`/api/turbine_inspections/${inspectionToDelete.id}`);
+                // Optionally, you can update the state to remove the deleted inspection from the list
+                setTurbineInspections(turbineInspections.filter(ins => ins.id !== inspectionToDelete.id));
+                toast.success("Inspection deleted successfully");
+            } catch (error) {
+                console.error("Error deleting inspection:", error);
+                toast.error("Failed to delete inspection");
+            }
+        }
+        setIsConfirmationModalOpen(false);
+        setInspectionToDelete(null);
     };
 
     const closeModal = () => {
@@ -128,12 +152,22 @@ const TurbineInspectionTable = ({inspections}) => {
                                         day: "numeric",
                                     })}
                                 </td>
-                                <td className="border px-2 py-4 text-center cursor-pointer" onClick={() => handleRowClick(turbineInspection)}>
-                                <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700" />
+                                <td className="border px-2 py-4 text-center cursor-pointer" >
+                                <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700 mr-4" onClick={() => handleRowClick(turbineInspection)}/>
+                                <FontAwesomeIcon
+                                            icon={faTrash}
+                                            className="cursor-pointer text-red-500"
+                                            onClick={() => handleDeleteClick(turbineInspection)}
+                                        />
                                 </td>
                             </tr>
                         ))}
                 </tbody>
+                <ConfirmationModal
+                isOpen={isConfirmationModalOpen}
+                onClose={() => setIsConfirmationModalOpen(false)}
+                onConfirm={confirmDelete}
+            />
             </table>
             <InspectionModal 
             isOpen={isModalOpen}

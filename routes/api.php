@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/turbine_inspections', [TurbineInspectionController::class, 'index'])->name('turbine_inspections.index');
 Route::get('/turbine_inspections/create', [TurbineInspectionController::class, 'create'])->name('turbine_inspections.create');
 Route::post('/turbine_inspections', [TurbineInspectionController::class, 'store'])->name('turbine_inspections.store');
+Route::delete('/turbine_inspections/{id}', [TurbineInspectionController::class, 'destroy'])->name('turbine_inspections.destroy');
 
