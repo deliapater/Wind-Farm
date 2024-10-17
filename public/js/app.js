@@ -7599,7 +7599,18 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
           },
           disabled: currentPage === 1,
           className: "mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full",
-          children: "Previous"
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDoubleLeft
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          onClick: function onClick() {
+            return setCurrentPage(currentPage - 1);
+          },
+          disabled: currentPage === 1,
+          className: "mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faChevronLeft
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
           className: "mx-2 py-2 px-4",
           children: ["Page ", currentPage, " of ", totalPages]
@@ -7609,7 +7620,18 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
           },
           disabled: currentPage >= totalPages,
           className: "mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full",
-          children: "Next"
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faChevronRight
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          onClick: function onClick() {
+            return setCurrentPage(totalPages);
+          },
+          disabled: currentPage >= totalPages,
+          className: "mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDoubleRight
+          })
         })]
       })]
     })]

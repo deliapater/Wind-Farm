@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faEye, faTrash, faChevronLeft, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "./Spinner";
 import InspectionModal from "./InspectionModal";
 import ConfirmationModal from "./ConfirmationModal";
@@ -181,11 +181,18 @@ const TurbineInspectionTable = ({inspections}) => {
 
             <div className="flex justify-center mt-4">
                 <button
+                    onClick={() => setCurrentPage(currentPage -1)}
+                    disabled={currentPage === 1}
+                    className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
+                >
+                     <FontAwesomeIcon icon={faAngleDoubleLeft} />
+                </button>
+                <button
                     onClick={() => setCurrentPage(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={"mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"}
+                    className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
                 >
-                    Previous 
+                   <FontAwesomeIcon icon={faChevronLeft} />
                 </button>
                 <span className="mx-2 py-2 px-4">
                    Page {currentPage} of {totalPages}
@@ -195,7 +202,14 @@ const TurbineInspectionTable = ({inspections}) => {
                     disabled={currentPage >= totalPages}
                     className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
                 >
-                    Next
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </button>
+                <button
+                    onClick={() => setCurrentPage(totalPages)}
+                    disabled={currentPage >= totalPages}
+                    className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
+                >
+                    <FontAwesomeIcon icon={faAngleDoubleRight} /> 
                 </button>
             </div>
             </>
