@@ -8457,7 +8457,7 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
         className: "flex justify-center mt-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
           onClick: function onClick() {
-            return setCurrentPage(currentPage - 1);
+            return setCurrentPage(1);
           },
           disabled: currentPage === 1,
           className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),

@@ -211,7 +211,7 @@ const TurbineInspectionTable = ({inspections}) => {
 
             <div className="flex justify-center mt-4">
                 <button
-                    onClick={() => setCurrentPage(currentPage -1)}
+                    onClick={() => setCurrentPage(1)}
                     disabled={currentPage === 1}
                     className={`mx-2 px-4 py-2 rounded-full ${
                         currentPage === 1
