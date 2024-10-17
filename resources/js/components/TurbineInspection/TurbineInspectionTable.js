@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faEye, faTrash, faChevronLeft, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faEye, faTrash, faSpinner, faChevronLeft, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "./Spinner";
 import InspectionModal from "./InspectionModal";
 import ConfirmationModal from "./ConfirmationModal";
@@ -26,6 +26,7 @@ const TurbineInspectionTable = ({inspections}) => {
     const [selectedInspection, setSelectedInspection] = useState(null)
     const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
     const [inspectionToDelete, setInspectionToDelete] = useState(null);
+    const [deleting, setDeleting] =  useState(false);
 
     const handleSearchInputChange = (event) => {
         setSearchInput(event.target.value);
@@ -54,8 +55,10 @@ const TurbineInspectionTable = ({inspections}) => {
     };
 
     const handleRowClick = (inspection) => {
+        if (!deleting) {
         setSelectedInspection(inspection);
         setIsModalOpen(true);
+        }
     };
 
     const handleDeleteClick = (inspection) => {
@@ -65,6 +68,7 @@ const TurbineInspectionTable = ({inspections}) => {
 
     const confirmDelete = async () => {
         if (inspectionToDelete) {
+            setDeleting(true);
             try {
                 await axios.delete(`/api/turbine_inspections/${inspectionToDelete.id}`);
                 // Optionally, you can update the state to remove the deleted inspection from the list
@@ -73,6 +77,8 @@ const TurbineInspectionTable = ({inspections}) => {
             } catch (error) {
                 console.error("Error deleting inspection:", error);
                 toast.error("Failed to delete inspection");
+            } finally {
+                setDeleting(false);
             }
         }
         setIsConfirmationModalOpen(false);
@@ -134,7 +140,9 @@ const TurbineInspectionTable = ({inspections}) => {
                 <tbody>
                     {turbineInspections &&
                     turbineInspections.map((turbineInspection) => (
-                            <tr key={turbineInspection.id} className="hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={() => handleRowClick(turbineInspection)}>
+                            <tr key={turbineInspection.id} className={`"hover:shadow-lg transition-shadow duration-300 
+                            ${ deleting ? "cursor-not-allowed" : "cursor-pointer"}`} 
+                            onClick={() => handleRowClick(turbineInspection)}>
                                 <td className="border px-8 py-4">
                                     {turbineInspection.turbine?.name}
                                 </td>
@@ -153,9 +161,13 @@ const TurbineInspectionTable = ({inspections}) => {
                                         day: "numeric",
                                     })}
                                 </td>
-                                <td className="border px-2 py-4 text-center cursor-pointer" >
-                                <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700 mr-4" onClick={() => handleRowClick(turbineInspection)}/>
-                                <FontAwesomeIcon
+                                <td className="border px-2 py-4 text-center">
+                                    {deleting ? (
+                                        <FontAwesomeIcon icon={faSpinner} spin className="text-blue-500" />
+                                    ) : (
+                                        <>
+                                         <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700 mr-4" onClick={() => handleRowClick(turbineInspection)}/>
+                                            <FontAwesomeIcon
                                             icon={faTrash}
                                             className="cursor-pointer text-red-500"
                                             onClick={(e) => {
@@ -163,6 +175,8 @@ const TurbineInspectionTable = ({inspections}) => {
                                                 handleDeleteClick(turbineInspection)}
                                             }
                                         />
+                                        </>
+                                    )}
                                 </td>
                             </tr>
                         ))}

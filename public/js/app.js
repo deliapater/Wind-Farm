@@ -7397,6 +7397,10 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
     _useState20 = _slicedToArray(_useState19, 2),
     inspectionToDelete = _useState20[0],
     setInspectionToDelete = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState22 = _slicedToArray(_useState21, 2),
+    deleting = _useState22[0],
+    setDeleting = _useState22[1];
   var handleSearchInputChange = function handleSearchInputChange(event) {
     setSearchInput(event.target.value);
     setCurrentPage(1);
@@ -7446,8 +7450,10 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
     };
   }();
   var handleRowClick = function handleRowClick(inspection) {
-    setSelectedInspection(inspection);
-    setIsModalOpen(true);
+    if (!deleting) {
+      setSelectedInspection(inspection);
+      setIsModalOpen(true);
+    }
   };
   var handleDeleteClick = function handleDeleteClick(inspection) {
     setInspectionToDelete(inspection);
@@ -7459,33 +7465,38 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             if (!inspectionToDelete) {
-              _context2.next = 12;
+              _context2.next = 16;
               break;
             }
-            _context2.prev = 1;
-            _context2.next = 4;
+            setDeleting(true);
+            _context2.prev = 2;
+            _context2.next = 5;
             return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/turbine_inspections/".concat(inspectionToDelete.id));
-          case 4:
+          case 5:
             // Optionally, you can update the state to remove the deleted inspection from the list
             setTurbineInspections(turbineInspections.filter(function (ins) {
               return ins.id !== inspectionToDelete.id;
             }));
             react_toastify__WEBPACK_IMPORTED_MODULE_6__.toast.success("Inspection deleted successfully");
-            _context2.next = 12;
+            _context2.next = 13;
             break;
-          case 8:
-            _context2.prev = 8;
-            _context2.t0 = _context2["catch"](1);
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](2);
             console.error("Error deleting inspection:", _context2.t0);
             react_toastify__WEBPACK_IMPORTED_MODULE_6__.toast.error("Failed to delete inspection");
-          case 12:
+          case 13:
+            _context2.prev = 13;
+            setDeleting(false);
+            return _context2.finish(13);
+          case 16:
             setIsConfirmationModalOpen(false);
             setInspectionToDelete(null);
-          case 14:
+          case 18:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[1, 8]]);
+      }, _callee2, null, [[2, 9, 13, 16]]);
     }));
     return function confirmDelete() {
       return _ref3.apply(this, arguments);
@@ -7541,7 +7552,7 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
           children: turbineInspections && turbineInspections.map(function (turbineInspection) {
             var _turbineInspection$tu, _turbineInspection$co;
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
-              className: "hover:shadow-lg transition-shadow duration-300 cursor-pointer",
+              className: "\"hover:shadow-lg transition-shadow duration-300 \n                            ".concat(deleting ? "cursor-not-allowed" : "cursor-pointer"),
               onClick: function onClick() {
                 return handleRowClick(turbineInspection);
               },
@@ -7561,22 +7572,28 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
                   month: "long",
                   day: "numeric"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("td", {
-                className: "border px-2 py-4 text-center cursor-pointer",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faEye,
-                  className: "text-blue-500 hover:text-blue-700 mr-4",
-                  onClick: function onClick() {
-                    return handleRowClick(turbineInspection);
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faTrash,
-                  className: "cursor-pointer text-red-500",
-                  onClick: function onClick(e) {
-                    e.stopPropagation();
-                    handleDeleteClick(turbineInspection);
-                  }
-                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                className: "border px-2 py-4 text-center",
+                children: deleting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSpinner,
+                  spin: true,
+                  className: "text-blue-500"
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faEye,
+                    className: "text-blue-500 hover:text-blue-700 mr-4",
+                    onClick: function onClick() {
+                      return handleRowClick(turbineInspection);
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faTrash,
+                    className: "cursor-pointer text-red-500",
+                    onClick: function onClick(e) {
+                      e.stopPropagation();
+                      handleDeleteClick(turbineInspection);
+                    }
+                  })]
+                })
               })]
             }, turbineInspection.id);
           })
