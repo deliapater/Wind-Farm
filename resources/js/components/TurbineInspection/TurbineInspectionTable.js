@@ -134,7 +134,7 @@ const TurbineInspectionTable = ({inspections}) => {
                 <tbody>
                     {turbineInspections &&
                     turbineInspections.map((turbineInspection) => (
-                            <tr key={turbineInspection.id}>
+                            <tr key={turbineInspection.id} className="hover:shadow-lg transition-shadow duration-300 cursor-pointer" onClick={() => handleRowClick(turbineInspection)}>
                                 <td className="border px-8 py-4">
                                     {turbineInspection.turbine?.name}
                                 </td>
@@ -158,7 +158,10 @@ const TurbineInspectionTable = ({inspections}) => {
                                 <FontAwesomeIcon
                                             icon={faTrash}
                                             className="cursor-pointer text-red-500"
-                                            onClick={() => handleDeleteClick(turbineInspection)}
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+                                                handleDeleteClick(turbineInspection)}
+                                            }
                                         />
                                 </td>
                             </tr>
