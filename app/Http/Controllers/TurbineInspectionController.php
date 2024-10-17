@@ -16,7 +16,7 @@ class TurbineInspectionController extends Controller
      */
     public function index(Request $request)
     {
-        $query = TurbineInspection::with(['turbine', 'component']);
+        $query = TurbineInspection::with(['turbine', 'component:id,name,image,description']);
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -28,6 +28,7 @@ class TurbineInspectionController extends Controller
             });
         }
         $turbine_inspections = $query->paginate(10);
+        \Log::info($turbine_inspections);
         return response()->json($turbine_inspections);
     }
 

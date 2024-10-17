@@ -9,6 +9,13 @@ class Component extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'name',
+        'image',
+        'description'
+    ];
+
     public function turbine()
     {
         return $this->belongsTo(Turbine::class);

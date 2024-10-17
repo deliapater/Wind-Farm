@@ -8176,6 +8176,17 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var gradeLabels = ["Perfect", "Minor Issue", "Moderate Issue", "Serious Issue", "Completely Broken/Missing"];
+var gradeColorMap = {
+  1: "bg-green-200",
+  // Perfect
+  2: "bg-yellow-200",
+  // Minor Issue
+  3: "bg-orange-200",
+  // Moderate Issue
+  4: "bg-red-200",
+  // Serious Issue
+  5: "bg-gray-200" // Completely Broken/Missing
+};
 var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
   var inspections = _ref.inspections;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -8248,23 +8259,24 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
             });
           case 6:
             response = _context.sent;
+            console.log("IMAGE----->", response.data.image);
             console.log("API Response:", response.data);
             setTurbineInspections(response.data.data);
             setCurrentPage(response.data.current_page);
             setTotalPages(response.data.last_page);
             setLoading(false);
-            _context.next = 18;
+            _context.next = 19;
             break;
-          case 14:
-            _context.prev = 14;
+          case 15:
+            _context.prev = 15;
             _context.t0 = _context["catch"](3);
             console.log(_context.t0);
             setLoading(false);
-          case 18:
+          case 19:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[3, 14]]);
+      }, _callee, null, [[3, 15]]);
     }));
     return function fetchTurbineInspections() {
       return _ref2.apply(this, arguments);
@@ -8356,6 +8368,12 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("thead", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+              style: {
+                width: '5%'
+              },
+              className: "bg-gray-100 border text-left px-8 py-4",
+              children: "Ref"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
               className: "bg-gray-100 border text-left px-8 py-4",
               children: "Turbine Name"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
@@ -8378,13 +8396,19 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
                 return handleRowClick(turbineInspection);
               },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                style: {
+                  width: '5%'
+                },
+                className: "border px-8 py-4",
+                children: turbineInspection.id
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                 className: "border px-8 py-4",
                 children: (_turbineInspection$tu = turbineInspection.turbine) === null || _turbineInspection$tu === void 0 ? void 0 : _turbineInspection$tu.name
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                 className: "border px-8 py-4",
                 children: (_turbineInspection$co = turbineInspection.component) === null || _turbineInspection$co === void 0 ? void 0 : _turbineInspection$co.name
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
-                className: "border px-8 py-4",
+                className: "border px-8 py-4 ".concat(gradeColorMap[turbineInspection.grade]),
                 children: gradeLabels[turbineInspection.grade - 1]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                 className: "border px-8 py-4",

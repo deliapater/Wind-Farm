@@ -15,6 +15,14 @@ const gradeLabels = [
     "Completely Broken/Missing",
 ];
 
+const gradeColorMap = {
+    1: "bg-green-200",    // Perfect
+    2: "bg-yellow-200",   // Minor Issue
+    3: "bg-orange-200",   // Moderate Issue
+    4: "bg-red-200",      // Serious Issue
+    5: "bg-gray-200",     // Completely Broken/Missing
+};
+
 const TurbineInspectionTable = ({inspections}) => {
     const [turbineInspections, setTurbineInspections] = useState([]);
     const [searchInput, setSearchInput] = useState("");
@@ -42,6 +50,8 @@ const TurbineInspectionTable = ({inspections}) => {
                     search
                 },
             });
+            console.log("IMAGE----->",response.data.image);
+
             console.log("API Response:", response.data);
 
             setTurbineInspections(response.data.data);
@@ -123,6 +133,9 @@ const TurbineInspectionTable = ({inspections}) => {
             <table className="w-full rounded-full">
                 <thead>
                     <tr>
+                        <th style={{ width: '5%' }} className="bg-gray-100 border text-left px-8 py-4">
+                            Ref
+                        </th>
                         <th className="bg-gray-100 border text-left px-8 py-4">
                             Turbine Name
                         </th>
@@ -143,14 +156,17 @@ const TurbineInspectionTable = ({inspections}) => {
                             <tr key={turbineInspection.id} className={`hover:shadow-lg transition-shadow duration-300 
                             ${deleting ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
                             onClick={() => handleRowClick(turbineInspection)}>
+                                <td style={{ width: '5%' }} className="border px-8 py-4">
+                                    {turbineInspection.id}
+                                </td>
                                 <td className="border px-8 py-4">
                                     {turbineInspection.turbine?.name}
                                 </td>
                                 <td className="border px-8 py-4">
                                     {turbineInspection.component?.name}
                                 </td>
-                                <td className="border px-8 py-4">
-                                    {gradeLabels[turbineInspection.grade - 1]}
+                                <td className={`border px-8 py-4 ${gradeColorMap[turbineInspection.grade]}`}>
+                                {gradeLabels[turbineInspection.grade - 1]}
                                 </td>
                                 <td className="border px-8 py-4">
                                     {new Date(
