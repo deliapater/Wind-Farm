@@ -71,33 +71,20 @@ This is a place for you to add your notes, plans, thinking and any feedback you 
 
 ### Aditional Setup
 ```bash
-Server
-$ php artisan serve
-
 Sail
 $ ./vendor/bin/sail up
 
-Unit Tests
-$ mysql -u testuser -p testpassword
-$ php artisan test
-
-URL
-http://localhost:8000/
-
-Tailwind CSS
-$ npx tailwindcss build resources/css/app.css -o public/css/app.css
-
-Client
-$ npm run watch
-
 DB Tables
-$ php artisan migrate
+$ ./vendor/bin/sail php artisan migrate
 
 DB Seeds
-$ php artisan db:seed --class=TurbineSeeder  
+$ ./vendor/bin/sail php artisan db:seed --class=TurbineSeeder  
 
-Mysql
-$ mysql -u sail -p password
+URL
+http://0.0.0.0/
+
+Client
+$ ./vendor/bin/sail npm run watch
 ```
 
 The application has been built with three entity models: Turbine, Component and TurbineInspection. A Turbine can have multiple Components and each Component can have multiple Inspections. The server-side of the application has been made with Laravel, the client-side with React.js and styling with Tailwind CSS. 
