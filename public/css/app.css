@@ -638,6 +638,9 @@ video {
 .h-8 {
   height: 2rem;
 }
+.h-4 {
+  height: 1rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -658,6 +661,12 @@ video {
 }
 .w-full {
   width: 100%;
+}
+.w-16 {
+  width: 4rem;
+}
+.w-4 {
+  width: 1rem;
 }
 .max-w-6xl {
   max-width: 72rem;
@@ -715,6 +724,12 @@ video {
 }
 .border-4 {
   border-width: 4px;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-8 {
+  border-width: 8px;
 }
 .border-t {
   border-top-width: 1px;
