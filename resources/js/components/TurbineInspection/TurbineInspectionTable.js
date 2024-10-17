@@ -140,8 +140,8 @@ const TurbineInspectionTable = ({inspections}) => {
                 <tbody>
                     {turbineInspections &&
                     turbineInspections.map((turbineInspection) => (
-                            <tr key={turbineInspection.id} className={`"hover:shadow-lg transition-shadow duration-300 
-                            ${ deleting ? "cursor-not-allowed" : "cursor-pointer"}`} 
+                            <tr key={turbineInspection.id} className={`hover:shadow-lg transition-shadow duration-300 
+                            ${deleting ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
                             onClick={() => handleRowClick(turbineInspection)}>
                                 <td className="border px-8 py-4">
                                     {turbineInspection.turbine?.name}
