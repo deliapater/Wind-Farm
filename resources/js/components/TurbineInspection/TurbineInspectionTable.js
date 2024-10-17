@@ -183,14 +183,22 @@ const TurbineInspectionTable = ({inspections}) => {
                 <button
                     onClick={() => setCurrentPage(currentPage -1)}
                     disabled={currentPage === 1}
-                    className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
+                    className={`mx-2 px-4 py-2 rounded-full ${
+                        currentPage === 1
+                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                    }`}
                 >
                      <FontAwesomeIcon icon={faAngleDoubleLeft} />
                 </button>
                 <button
                     onClick={() => setCurrentPage(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
+                    className={`mx-2 px-4 py-2 rounded-full ${
+                        currentPage === 1
+                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                    }`}
                 >
                    <FontAwesomeIcon icon={faChevronLeft} />
                 </button>
@@ -200,14 +208,22 @@ const TurbineInspectionTable = ({inspections}) => {
                 <button
                     onClick={() => setCurrentPage(currentPage + 1)}
                     disabled={currentPage >= totalPages}
-                    className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
+                    className={`mx-2 px-4 py-2 rounded-full ${
+                        currentPage >= totalPages
+                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                    }`}
                 >
                     <FontAwesomeIcon icon={faChevronRight} />
                 </button>
                 <button
                     onClick={() => setCurrentPage(totalPages)}
                     disabled={currentPage >= totalPages}
-                    className="mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full"
+                    className={`mx-2 px-4 py-2 rounded-full ${
+                        currentPage >= totalPages
+                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                    }`}
                 >
                     <FontAwesomeIcon icon={faAngleDoubleRight} /> 
                 </button>

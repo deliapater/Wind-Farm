@@ -7598,7 +7598,7 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
             return setCurrentPage(currentPage - 1);
           },
           disabled: currentPage === 1,
-          className: "mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full",
+          className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDoubleLeft
           })
@@ -7607,7 +7607,7 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
             return setCurrentPage(currentPage - 1);
           },
           disabled: currentPage === 1,
-          className: "mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full",
+          className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faChevronLeft
           })
@@ -7619,7 +7619,7 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
             return setCurrentPage(currentPage + 1);
           },
           disabled: currentPage >= totalPages,
-          className: "mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full",
+          className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage >= totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faChevronRight
           })
@@ -7628,7 +7628,7 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
             return setCurrentPage(totalPages);
           },
           disabled: currentPage >= totalPages,
-          className: "mx-2 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-full",
+          className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage >= totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDoubleRight
           })
