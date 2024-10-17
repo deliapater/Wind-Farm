@@ -7847,27 +7847,58 @@ var InspectionModal = function InspectionModal(_ref) {
     onClose = _ref.onClose,
     inspection = _ref.inspection;
   if (!isOpen) return null;
+  var getGradeClass = function getGradeClass(grade) {
+    switch (grade) {
+      case 1:
+        return 'text-green-600';
+      case 2:
+        return 'text-yellow-600';
+      case 3:
+        return 'text-orange-600';
+      case 4:
+        return 'text-red-600';
+      default:
+        return 'text-gray-600';
+    }
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "bg-white p-6 rounded-lg shadow-lg w-96",
+      className: "bg-white p-6 rounded-lg shadow-lg w-full max-w-lg",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
         className: "text-lg font-bold mb-4",
         children: "Inspection Details"
       }), inspection ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "mt-4 p-4 bg-gray-100 shadow-lg rounded-lg",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+              children: "Turbine:"
+            }), " ", inspection.turbine.name]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+              children: "Component:"
+            }), " ", inspection.component.name]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+            className: "py-1 rounded-full font-semibold ".concat(getGradeClass(inspection.grade)),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+              children: "Grade:"
+            }), " ", inspection.grade]
+          })]
+        }), inspection.component.image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+          src: inspection.component.image,
+          alt: "".concat(inspection.component.name, " Image"),
+          className: "mt-4 w-full h-auto object-cover rounded-lg shadow-md"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          className: "mt-2",
+          children: "No image available for this component."
+        }), inspection.component.description && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+          className: "mt-4 p-4 bg-gray-100 shadow-lg rounded-lg",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-            children: "Turbine:"
-          }), " ", inspection.turbine.name]
+            children: "Description:"
+          }), inspection.component.description]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-            children: "Component:"
-          }), " ", inspection.component.name]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
-            children: "Grade:"
-          }), " ", inspection.grade]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+          className: "mt-4 p-4 bg-gray-100 shadow-lg rounded-lg",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
             children: "Created At:"
           }), " ", new Date(inspection.created_at).toLocaleString()]
@@ -8259,24 +8290,23 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
             });
           case 6:
             response = _context.sent;
-            console.log("IMAGE----->", response.data.image);
             console.log("API Response:", response.data);
             setTurbineInspections(response.data.data);
             setCurrentPage(response.data.current_page);
             setTotalPages(response.data.last_page);
             setLoading(false);
-            _context.next = 19;
+            _context.next = 18;
             break;
-          case 15:
-            _context.prev = 15;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](3);
             console.log(_context.t0);
             setLoading(false);
-          case 19:
+          case 18:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[3, 15]]);
+      }, _callee, null, [[3, 14]]);
     }));
     return function fetchTurbineInspections() {
       return _ref2.apply(this, arguments);

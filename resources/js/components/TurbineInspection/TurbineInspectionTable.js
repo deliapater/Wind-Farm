@@ -50,8 +50,6 @@ const TurbineInspectionTable = ({inspections}) => {
                     search
                 },
             });
-            console.log("IMAGE----->",response.data.image);
-
             console.log("API Response:", response.data);
 
             setTurbineInspections(response.data.data);
