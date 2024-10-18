@@ -31,7 +31,7 @@ const InspectionModal = ({ isOpen, onClose, inspection }) => {
                             <span className={`py-1 rounded-full font-semibold ${getGradeClass(inspection.grade)}`}><strong>Grade:</strong> {inspection.grade}</span>
                         </div>
                         {inspection.component.image ? (
-                            <img 
+                            <img
                                 src={inspection.component.image}
                                 alt={`${inspection.component.name} Image`}
                                 className="mt-4 w-full h-auto object-cover rounded-lg shadow-md"

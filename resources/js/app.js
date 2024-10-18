@@ -20,14 +20,14 @@ const App = () => {
         <Route path="/create" element={<TurbineInspectionForm onSuccess={handleSuccess} />} />
         <Route path="*" element={<RedirectToTurbineInspections />} />
       </Routes>
-      <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false}/>
+      <ToastContainer position="top-right" autoClose={1000} hideProgressBar={false} />
     </Router>
   );
 };
 
 const RedirectToTurbineInspections = () => {
   const navigate = useNavigate();
-  
+
   React.useEffect(() => {
     navigate('/');
   }, [navigate]);

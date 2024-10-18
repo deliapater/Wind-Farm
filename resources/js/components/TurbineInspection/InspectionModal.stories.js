@@ -1,5 +1,5 @@
 import React from 'react';
-import InspectionModal from './InspectionModal'; 
+import InspectionModal from './InspectionModal';
 
 export default {
     title: 'Components/InspectionModal',
@@ -12,7 +12,7 @@ const Template = (args) => <InspectionModal {...args} />;
 export const Default = Template.bind({});
 Default.args = {
     isOpen: true,
-    onClose: () => {},
+    onClose: () => { },
     inspection: {
         turbine: { name: 'Turbine A' },
         component: { name: 'Blade' },
@@ -24,14 +24,14 @@ Default.args = {
 export const WithoutDetails = Template.bind({});
 WithoutDetails.args = {
     isOpen: true,
-    onClose: () => {},
+    onClose: () => { },
     inspection: null,
 };
 
 export const ClosedModal = Template.bind({});
 ClosedModal.args = {
     isOpen: false,
-    onClose: () => {},
+    onClose: () => { },
     inspection: {
         turbine: { name: 'Turbine B' },
         component: { name: 'Gearbox' },
