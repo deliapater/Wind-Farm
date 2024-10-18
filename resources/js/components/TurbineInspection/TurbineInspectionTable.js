@@ -136,137 +136,139 @@ const TurbineInspectionTable = ({inspections}) => {
                     <Spinner />
   
             ) : (
-                <>
-            <table className="w-full rounded-full">
-                <thead>
-                    <tr>
-                        <th style={{ width: '5%' }} className="bg-gray-100 border text-left px-8 py-4 cursor-pointer">
-                            Ref
-                        </th>
-                        <th className="bg-gray-100 border text-left px-8 py-4 cursor-pointer">
-                            Turbine Name 
-                        </th>
-                        <th className="bg-gray-100 border text-left px-8 py-4 cursor-pointer">
-                            Component Name
-                        </th>
-                        <th className="bg-gray-100 border text-left px-8 py-4 cursor-pointer">
-                            Grade
-                        </th>
-                        <th className="bg-gray-100 border text-left px-8 py-4 cursor-pointer" onClick={() => handleSort("created_at")}>
-                            Date {sortDirection === "asc" ? <FontAwesomeIcon icon={faSortUp} /> : <FontAwesomeIcon icon={faSortDown} />}
-                        </th>
-                        <th style={{ width: '5%' }} className="bg-gray-100 border text-left px-8 py-4">
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {turbineInspections &&
-                    turbineInspections.map((turbineInspection) => (
-                            <tr key={turbineInspection.id} className={`hover:shadow-lg transition-shadow duration-300 
-                            ${deleting ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
-                            onClick={() => handleRowClick(turbineInspection)}>
-                                <td style={{ width: '5%' }} className="border px-8 py-4">
-                                    {turbineInspection.id}
-                                </td>
-                                <td className="border px-8 py-4">
-                                    {turbineInspection.turbine?.name}
-                                </td>
-                                <td className="border px-8 py-4">
-                                    {turbineInspection.component?.name}
-                                </td>
-                                <td className={`border px-8 py-4 ${gradeColorMap[turbineInspection.grade]}`}>
-                                {gradeLabels[turbineInspection.grade - 1]}
-                                </td>
-                                <td className="border px-8 py-4">
-                                    {new Date(
-                                        turbineInspection.created_at
-                                    ).toLocaleDateString("en-US", {
-                                        year: "numeric",
-                                        month: "long",
-                                        day: "numeric",
-                                    })}
-                                </td>
-                                <td className="border px-2 py-4 text-center">
-                                    {deleting ? (
-                                        <FontAwesomeIcon icon={faSpinner} spin className="text-blue-500" />
-                                    ) : (
-                                        <>
-                                         <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700 mr-4" onClick={() => handleRowClick(turbineInspection)}/>
-                                            <FontAwesomeIcon
-                                            icon={faTrash}
-                                            className="cursor-pointer text-red-500"
-                                            onClick={(e) => {
-                                                e.stopPropagation()
-                                                handleDeleteClick(turbineInspection)}
-                                            }
-                                        />
-                                        </>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
-                </tbody>
-                <ConfirmationModal
-                isOpen={isConfirmationModalOpen}
-                onClose={() => setIsConfirmationModalOpen(false)}
-                onConfirm={confirmDelete}
-            />
-            </table>
-            <InspectionModal 
-            isOpen={isModalOpen}
-            onClose={closeModal}
-            inspection={selectedInspection}
-            />
+            <>
+            <div className="overflow-x-auto">
+                <table className="min-w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th style={{ width: '5%' }} className="bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer">
+                                Ref
+                            </th>
+                            <th className="bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer">
+                                Turbine Name 
+                            </th>
+                            <th className="bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer">
+                                Component Name
+                            </th>
+                            <th className="bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer">
+                                Grade
+                            </th>
+                            <th className="bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer" onClick={() => handleSort("created_at")}>
+                                Date {sortDirection === "asc" ? <FontAwesomeIcon icon={faSortUp} /> : <FontAwesomeIcon icon={faSortDown} />}
+                            </th>
+                            <th style={{ width: '5%' }} className="bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {turbineInspections &&
+                        turbineInspections.map((turbineInspection) => (
+                                <tr key={turbineInspection.id} className={`hover:shadow-lg transition-shadow duration-300 
+                                ${deleting ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
+                                onClick={() => handleRowClick(turbineInspection)}>
+                                    <td style={{ width: '5%' }} className="border px-4 py-2 sm:px-6 sm:py-3">
+                                        {turbineInspection.id}
+                                    </td>
+                                    <td className="border px-4 py-2 sm:px-6 sm:py-3">
+                                        {turbineInspection.turbine?.name}
+                                    </td>
+                                    <td className="border  px-4 py-2 sm:px-6 sm:py-3">
+                                        {turbineInspection.component?.name}
+                                    </td>
+                                    <td className={`border  px-4 py-2 sm:px-6 sm:py-3 ${gradeColorMap[turbineInspection.grade]}`}>
+                                    {gradeLabels[turbineInspection.grade - 1]}
+                                    </td>
+                                    <td className="border px-4 py-2 sm:px-6 sm:py-3">
+                                        {new Date(
+                                            turbineInspection.created_at
+                                        ).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        })}
+                                    </td>
+                                    <td className="border px-4 py-2 text-center">
+                                        {deleting ? (
+                                            <FontAwesomeIcon icon={faSpinner} spin className="text-blue-500" />
+                                        ) : (
+                                            <>
+                                            <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700 mr-4" onClick={() => handleRowClick(turbineInspection)}/>
+                                                <FontAwesomeIcon
+                                                icon={faTrash}
+                                                className="cursor-pointer text-red-500"
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    handleDeleteClick(turbineInspection)}
+                                                }
+                                            />
+                                            </>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                    </tbody>
+                    <ConfirmationModal
+                    isOpen={isConfirmationModalOpen}
+                    onClose={() => setIsConfirmationModalOpen(false)}
+                    onConfirm={confirmDelete}
+                />
+                </table>
+                <InspectionModal 
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                inspection={selectedInspection}
+                />
 
-            <div className="flex justify-center mt-4">
-                <button
-                    onClick={() => setCurrentPage(1)}
-                    disabled={currentPage === 1}
-                    className={`mx-2 px-4 py-2 rounded-full ${
-                        currentPage === 1
-                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                            : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
-                    }`}
-                >
-                     <FontAwesomeIcon icon={faAngleDoubleLeft} />
-                </button>
-                <button
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className={`mx-2 px-4 py-2 rounded-full ${
-                        currentPage === 1
-                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                            : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
-                    }`}
-                >
-                   <FontAwesomeIcon icon={faChevronLeft} />
-                </button>
-                <span className="mx-2 py-2 px-4">
-                   Page {currentPage} of {totalPages}
-                </span>
-                <button
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                    disabled={currentPage >= totalPages}
-                    className={`mx-2 px-4 py-2 rounded-full ${
-                        currentPage >= totalPages
-                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                            : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
-                    }`}
-                >
-                    <FontAwesomeIcon icon={faChevronRight} />
-                </button>
-                <button
-                    onClick={() => setCurrentPage(totalPages)}
-                    disabled={currentPage >= totalPages}
-                    className={`mx-2 px-4 py-2 rounded-full ${
-                        currentPage >= totalPages
-                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                            : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
-                    }`}
-                >
-                    <FontAwesomeIcon icon={faAngleDoubleRight} /> 
-                </button>
+                <div className="flex justify-center mt-4">
+                    <button
+                        onClick={() => setCurrentPage(1)}
+                        disabled={currentPage === 1}
+                        className={`mx-2 px-4 py-2 rounded-full ${
+                            currentPage === 1
+                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                        }`}
+                    >
+                        <FontAwesomeIcon icon={faAngleDoubleLeft} />
+                    </button>
+                    <button
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className={`mx-2 px-4 py-2 rounded-full ${
+                            currentPage === 1
+                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                        }`}
+                    >
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                    </button>
+                    <span className="mx-2 py-2 px-4">
+                    Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={currentPage >= totalPages}
+                        className={`mx-2 px-4 py-2 rounded-full ${
+                            currentPage >= totalPages
+                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                        }`}
+                    >
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                    <button
+                        onClick={() => setCurrentPage(totalPages)}
+                        disabled={currentPage >= totalPages}
+                        className={`mx-2 px-4 py-2 rounded-full ${
+                            currentPage >= totalPages
+                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                        }`}
+                    >
+                        <FontAwesomeIcon icon={faAngleDoubleRight} /> 
+                    </button>
+                </div>
             </div>
             </>
                  )}

@@ -8406,153 +8406,156 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
           className: "text-gray-500"
         })
       })]
-    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("table", {
-        className: "w-full rounded-full",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
-              style: {
-                width: '5%'
-              },
-              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
-              children: "Ref"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
-              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
-              children: "Turbine Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
-              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
-              children: "Component Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
-              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
-              children: "Grade"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("th", {
-              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
-              onClick: function onClick() {
-                return handleSort("created_at");
-              },
-              children: ["Date ", sortDirection === "asc" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSortUp
-              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSortDown
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
-              style: {
-                width: '5%'
-              },
-              className: "bg-gray-100 border text-left px-8 py-4",
-              children: "Actions"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("tbody", {
-          children: turbineInspections && turbineInspections.map(function (turbineInspection) {
-            var _turbineInspection$tu, _turbineInspection$co;
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
-              className: "hover:shadow-lg transition-shadow duration-300 \n                            ".concat(deleting ? "cursor-not-allowed opacity-50" : "cursor-pointer"),
-              onClick: function onClick() {
-                return handleRowClick(turbineInspection);
-              },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "overflow-x-auto",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("table", {
+          className: "min-w-full table-auto",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
                 style: {
                   width: '5%'
                 },
-                className: "border px-8 py-4",
-                children: turbineInspection.id
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
-                className: "border px-8 py-4",
-                children: (_turbineInspection$tu = turbineInspection.turbine) === null || _turbineInspection$tu === void 0 ? void 0 : _turbineInspection$tu.name
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
-                className: "border px-8 py-4",
-                children: (_turbineInspection$co = turbineInspection.component) === null || _turbineInspection$co === void 0 ? void 0 : _turbineInspection$co.name
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
-                className: "border px-8 py-4 ".concat(gradeColorMap[turbineInspection.grade]),
-                children: gradeLabels[turbineInspection.grade - 1]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
-                className: "border px-8 py-4",
-                children: new Date(turbineInspection.created_at).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
-                className: "border px-2 py-4 text-center",
-                children: deleting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSpinner,
-                  spin: true,
-                  className: "text-blue-500"
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faEye,
-                    className: "text-blue-500 hover:text-blue-700 mr-4",
-                    onClick: function onClick() {
-                      return handleRowClick(turbineInspection);
-                    }
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faTrash,
-                    className: "cursor-pointer text-red-500",
-                    onClick: function onClick(e) {
-                      e.stopPropagation();
-                      handleDeleteClick(turbineInspection);
-                    }
-                  })]
-                })
+                className: "bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer",
+                children: "Ref"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+                className: "bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer",
+                children: "Turbine Name"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+                className: "bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer",
+                children: "Component Name"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+                className: "bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer",
+                children: "Grade"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("th", {
+                className: "bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3 cursor-pointer",
+                onClick: function onClick() {
+                  return handleSort("created_at");
+                },
+                children: ["Date ", sortDirection === "asc" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSortUp
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSortDown
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+                style: {
+                  width: '5%'
+                },
+                className: "bg-gray-100 border text-left px-4 py-2 sm:px-6 sm:py-3",
+                children: "Actions"
               })]
-            }, turbineInspection.id);
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ConfirmationModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          isOpen: isConfirmationModalOpen,
-          onClose: function onClose() {
-            return setIsConfirmationModalOpen(false);
-          },
-          onConfirm: confirmDelete
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("tbody", {
+            children: turbineInspections && turbineInspections.map(function (turbineInspection) {
+              var _turbineInspection$tu, _turbineInspection$co;
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
+                className: "hover:shadow-lg transition-shadow duration-300 \n                                ".concat(deleting ? "cursor-not-allowed opacity-50" : "cursor-pointer"),
+                onClick: function onClick() {
+                  return handleRowClick(turbineInspection);
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                  style: {
+                    width: '5%'
+                  },
+                  className: "border px-4 py-2 sm:px-6 sm:py-3",
+                  children: turbineInspection.id
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                  className: "border px-4 py-2 sm:px-6 sm:py-3",
+                  children: (_turbineInspection$tu = turbineInspection.turbine) === null || _turbineInspection$tu === void 0 ? void 0 : _turbineInspection$tu.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                  className: "border  px-4 py-2 sm:px-6 sm:py-3",
+                  children: (_turbineInspection$co = turbineInspection.component) === null || _turbineInspection$co === void 0 ? void 0 : _turbineInspection$co.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                  className: "border  px-4 py-2 sm:px-6 sm:py-3 ".concat(gradeColorMap[turbineInspection.grade]),
+                  children: gradeLabels[turbineInspection.grade - 1]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                  className: "border px-4 py-2 sm:px-6 sm:py-3",
+                  children: new Date(turbineInspection.created_at).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                  className: "border px-4 py-2 text-center",
+                  children: deleting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSpinner,
+                    spin: true,
+                    className: "text-blue-500"
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faEye,
+                      className: "text-blue-500 hover:text-blue-700 mr-4",
+                      onClick: function onClick() {
+                        return handleRowClick(turbineInspection);
+                      }
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faTrash,
+                      className: "cursor-pointer text-red-500",
+                      onClick: function onClick(e) {
+                        e.stopPropagation();
+                        handleDeleteClick(turbineInspection);
+                      }
+                    })]
+                  })
+                })]
+              }, turbineInspection.id);
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ConfirmationModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            isOpen: isConfirmationModalOpen,
+            onClose: function onClose() {
+              return setIsConfirmationModalOpen(false);
+            },
+            onConfirm: confirmDelete
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_InspectionModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          isOpen: isModalOpen,
+          onClose: closeModal,
+          inspection: selectedInspection
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "flex justify-center mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+            onClick: function onClick() {
+              return setCurrentPage(1);
+            },
+            disabled: currentPage === 1,
+            className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDoubleLeft
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+            onClick: function onClick() {
+              return setCurrentPage(currentPage - 1);
+            },
+            disabled: currentPage === 1,
+            className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faChevronLeft
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
+            className: "mx-2 py-2 px-4",
+            children: ["Page ", currentPage, " of ", totalPages]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+            onClick: function onClick() {
+              return setCurrentPage(currentPage + 1);
+            },
+            disabled: currentPage >= totalPages,
+            className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage >= totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faChevronRight
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+            onClick: function onClick() {
+              return setCurrentPage(totalPages);
+            },
+            disabled: currentPage >= totalPages,
+            className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage >= totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDoubleRight
+            })
+          })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_InspectionModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        isOpen: isModalOpen,
-        onClose: closeModal,
-        inspection: selectedInspection
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "flex justify-center mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          onClick: function onClick() {
-            return setCurrentPage(1);
-          },
-          disabled: currentPage === 1,
-          className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDoubleLeft
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          onClick: function onClick() {
-            return setCurrentPage(currentPage - 1);
-          },
-          disabled: currentPage === 1,
-          className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faChevronLeft
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
-          className: "mx-2 py-2 px-4",
-          children: ["Page ", currentPage, " of ", totalPages]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          onClick: function onClick() {
-            return setCurrentPage(currentPage + 1);
-          },
-          disabled: currentPage >= totalPages,
-          className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage >= totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faChevronRight
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          onClick: function onClick() {
-            return setCurrentPage(totalPages);
-          },
-          disabled: currentPage >= totalPages,
-          className: "mx-2 px-4 py-2 rounded-full ".concat(currentPage >= totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 hover:bg-gray-400 text-gray-700'),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDoubleRight
-          })
-        })]
-      })]
+      })
     })]
   });
 };
