@@ -15,12 +15,14 @@ const TurbineInspectionForm = ({ onSuccess }) => {
         { label: "Turbine B", value: 2 },
         { label: "Turbine C", value: 3 },
     ];
+
     const componentsOptions = [
         { label: "Blade", value: 1 },
         { label: "Rotor", value: 2 },
         { label: "Hub", value: 3 },
         { label: "Generator", value: 4 },
     ];
+
     const gradeOptions = [
         { label: "Perfect", value: 1 },
         { label: "Minor Issue", value: 2 },
@@ -42,19 +44,23 @@ const TurbineInspectionForm = ({ onSuccess }) => {
             onSuccess("Inspection submitted successfully!");
             navigate("/");
         } catch (error) {
-            console.error(error)
+            console.error(error);
             toast.error("Error submitting inspections!");
         }
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
-                <h1 className="text-3xl font-bold mb-4 text-center">
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <form
+                onSubmit={handleSubmit}
+                className="max-w-md mx-auto w-full bg-white p-8 rounded-lg shadow-lg"
+            >
+                <h1 className="text-3xl font-semibold mb-6 text-center text-gray-700">
                     Turbine Inspection Form
                 </h1>
+
                 <div className="mb-4">
-                    <label htmlFor="turbineId" className="block mb-1">
+                    <label htmlFor="turbineId" className="block text-gray-600 mb-2 font-medium">
                         Turbine ID:
                     </label>
                     <select
@@ -62,7 +68,7 @@ const TurbineInspectionForm = ({ onSuccess }) => {
                         value={turbineId}
                         onChange={(e) => setTurbineId(parseInt(e.target.value, 10))}
                         required
-                        className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full border border-gray-300 rounded-lg py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option disabled value="">
                             Select a Turbine
@@ -74,18 +80,17 @@ const TurbineInspectionForm = ({ onSuccess }) => {
                         ))}
                     </select>
                 </div>
+
                 <div className="mb-4">
-                    <label htmlFor="componentId" className="block mb-1">
+                    <label htmlFor="componentId" className="block text-gray-600 mb-2 font-medium">
                         Component ID:
                     </label>
                     <select
                         id="componentId"
                         value={componentId}
-                        onChange={(e) =>
-                            setComponentId(parseInt(e.target.value, 10))
-                        }
+                        onChange={(e) => setComponentId(parseInt(e.target.value, 10))}
                         required
-                        className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full border border-gray-300 rounded-lg py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option disabled value="">
                             Select a Component
@@ -97,8 +102,9 @@ const TurbineInspectionForm = ({ onSuccess }) => {
                         ))}
                     </select>
                 </div>
+
                 <div className="mb-4">
-                    <label htmlFor="grade" className="block mb-1">
+                    <label htmlFor="grade" className="block text-gray-600 mb-2 font-medium">
                         Grade:
                     </label>
                     <select
@@ -106,7 +112,7 @@ const TurbineInspectionForm = ({ onSuccess }) => {
                         value={grade}
                         onChange={(e) => setGrade(parseInt(e.target.value, 10))}
                         required
-                        className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full border border-gray-300 rounded-lg py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option disabled value="">
                             Select a Grade
@@ -118,15 +124,15 @@ const TurbineInspectionForm = ({ onSuccess }) => {
                         ))}
                     </select>
                 </div>
+
                 <button
                     type="submit"
-                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
+                    className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
                 >
                     Submit
                 </button>
             </form>
-        </>
-
+        </div>
     );
 };
 

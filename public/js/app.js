@@ -8071,18 +8071,19 @@ var TurbineInspectionForm = function TurbineInspectionForm(_ref) {
       return _ref2.apply(this, arguments);
     };
   }();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "min-h-screen bg-gray-50 flex items-center justify-center",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
       onSubmit: handleSubmit,
-      className: "max-w-md mx-auto mt-8",
+      className: "max-w-md mx-auto w-full bg-white p-8 rounded-lg shadow-lg",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-        className: "text-3xl font-bold mb-4 text-center",
+        className: "text-3xl font-semibold mb-6 text-center text-gray-700",
         children: "Turbine Inspection Form"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "mb-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
           htmlFor: "turbineId",
-          className: "block mb-1",
+          className: "block text-gray-600 mb-2 font-medium",
           children: "Turbine ID:"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
           id: "turbineId",
@@ -8091,7 +8092,7 @@ var TurbineInspectionForm = function TurbineInspectionForm(_ref) {
             return setTurbineId(parseInt(e.target.value, 10));
           },
           required: true,
-          className: "w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500",
+          className: "w-full border border-gray-300 rounded-lg py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
             disabled: true,
             value: "",
@@ -8107,7 +8108,7 @@ var TurbineInspectionForm = function TurbineInspectionForm(_ref) {
         className: "mb-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
           htmlFor: "componentId",
-          className: "block mb-1",
+          className: "block text-gray-600 mb-2 font-medium",
           children: "Component ID:"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
           id: "componentId",
@@ -8116,7 +8117,7 @@ var TurbineInspectionForm = function TurbineInspectionForm(_ref) {
             return setComponentId(parseInt(e.target.value, 10));
           },
           required: true,
-          className: "w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500",
+          className: "w-full border border-gray-300 rounded-lg py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
             disabled: true,
             value: "",
@@ -8132,7 +8133,7 @@ var TurbineInspectionForm = function TurbineInspectionForm(_ref) {
         className: "mb-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
           htmlFor: "grade",
-          className: "block mb-1",
+          className: "block text-gray-600 mb-2 font-medium",
           children: "Grade:"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
           id: "grade",
@@ -8141,7 +8142,7 @@ var TurbineInspectionForm = function TurbineInspectionForm(_ref) {
             return setGrade(parseInt(e.target.value, 10));
           },
           required: true,
-          className: "w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500",
+          className: "w-full border border-gray-300 rounded-lg py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
             disabled: true,
             value: "",
@@ -8155,7 +8156,7 @@ var TurbineInspectionForm = function TurbineInspectionForm(_ref) {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
         type: "submit",
-        className: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300",
+        className: "w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50",
         children: "Submit"
       })]
     })
