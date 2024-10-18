@@ -27,6 +27,21 @@ class TurbineInspectionController extends Controller
                 $q->where('name', 'like', '%' . $search . '%');
             });
         }
+
+        $sortBy = $request->get('sortBy', 'created_at');
+        $sortDirection =  $request->get('sortDirection', 'desc');
+
+        $allowedSorts = ['turbine.name', 'component.name', 'grade', 'created_at'];
+        if (!in_array($sortBy, $allowedSorts)) {
+            $sortBy = 'created_at';
+        }
+
+        if ($sortBy === 'turbine.name' || $sortBy === 'component.name') {
+            $query->join($aoertBy === 'turbine.name' ? 'turbines' : 'components', $sortBy === 'turbine.name' ? 'turbines.id' : 'components.id', '=', $sortBy === 'turbine.name' ? 'turbine_inspections.turbine_id' : 'turbine_inspections.component_id')
+                ->orderBy($sortBy, $sortDirection);
+        } else {
+            $query->orderBy($sortBy, $sortDirection);
+        }
         $turbine_inspections = $query->paginate(10);
         \Log::info($turbine_inspections);
         return response()->json($turbine_inspections);

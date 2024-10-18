@@ -30,6 +30,8 @@ const TurbineInspectionTable = ({inspections}) => {
     const [totalPages, setTotalPages] = useState(0)
     const [paginationData, setPaginationData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [sortBy, setSortBy] = useState("created_at");
+    const [sortDirection, setSortDirection] = useState("desc");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedInspection, setSelectedInspection] = useState(null)
     const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
@@ -41,13 +43,22 @@ const TurbineInspectionTable = ({inspections}) => {
         setCurrentPage(1);
     };
 
-    const fetchTurbineInspections = async (page = 1, search="") => {
+    const handleSort = (column) => {
+        const newDirection = sortBy === column && sortDirection === 'asc' ? 'desc' : 'asc';
+        setSortBy(column);
+        setSortDirection(newDirection);
+        fetchTurbineInspections(1, searchInput, column, newDirection);
+    }
+
+    const fetchTurbineInspections = async (page = 1, search="", sortBy = "created_at", sortDirection = "desc") => {
         setLoading(true);
         try {
             const response = await axios.get("/api/turbine_inspections", {
                 params: {
                     page,
-                    search
+                    search,
+                    sortBy,
+                    sortDirection
                 },
             });
             console.log("API Response:", response.data);
@@ -99,8 +110,8 @@ const TurbineInspectionTable = ({inspections}) => {
     };
 
     useEffect(() => {
-        fetchTurbineInspections(currentPage, searchInput);
-    }, [currentPage, searchInput]);
+        fetchTurbineInspections(currentPage, searchInput, sortBy, sortDirection);
+    }, [currentPage, searchInput. sortBy, sortDirection]);
 
     return (
         <div className="container mx-auto px-4 py-8">
