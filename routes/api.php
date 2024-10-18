@@ -15,7 +15,7 @@ use App\Http\Controllers\TurbineInspectionController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware(['auth:sanctum', 'throttle:60,1'])->get('/user', function (Request $request) {
     return $request->user();
     
 });

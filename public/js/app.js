@@ -8244,49 +8244,43 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
     _useState12 = _slicedToArray(_useState11, 2),
     loading = _useState12[0],
     setLoading = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("created_at"),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("desc"),
     _useState14 = _slicedToArray(_useState13, 2),
-    sortBy = _useState14[0],
-    setSortBy = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("desc"),
+    sortDirection = _useState14[0],
+    setSortDirection = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState16 = _slicedToArray(_useState15, 2),
-    sortDirection = _useState16[0],
-    setSortDirection = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    isModalOpen = _useState16[0],
+    setIsModalOpen = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState18 = _slicedToArray(_useState17, 2),
-    isModalOpen = _useState18[0],
-    setIsModalOpen = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    selectedInspection = _useState18[0],
+    setSelectedInspection = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    selectedInspection = _useState20[0],
-    setSelectedInspection = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    isConfirmationModalOpen = _useState20[0],
+    setIsConfirmationModalOpen = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState22 = _slicedToArray(_useState21, 2),
-    isConfirmationModalOpen = _useState22[0],
-    setIsConfirmationModalOpen = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    inspectionToDelete = _useState22[0],
+    setInspectionToDelete = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState24 = _slicedToArray(_useState23, 2),
-    inspectionToDelete = _useState24[0],
-    setInspectionToDelete = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState26 = _slicedToArray(_useState25, 2),
-    deleting = _useState26[0],
-    setDeleting = _useState26[1];
+    deleting = _useState24[0],
+    setDeleting = _useState24[1];
   var handleSearchInputChange = function handleSearchInputChange(event) {
     setSearchInput(event.target.value);
     setCurrentPage(1);
   };
-  var handleSort = function handleSort(column) {
-    var newDirection = sortBy === column && sortDirection === 'asc' ? 'desc' : 'asc';
-    setSortBy(column);
+  var handleSort = function handleSort() {
+    var newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     setSortDirection(newDirection);
-    fetchTurbineInspections(1, searchInput, column, newDirection);
+    fetchTurbineInspections(currentPage, searchInput, newDirection);
   };
   var fetchTurbineInspections = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var page,
         search,
-        sortBy,
         sortDirection,
         response,
         _args = arguments;
@@ -8295,38 +8289,37 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
           case 0:
             page = _args.length > 0 && _args[0] !== undefined ? _args[0] : 1;
             search = _args.length > 1 && _args[1] !== undefined ? _args[1] : "";
-            sortBy = _args.length > 2 && _args[2] !== undefined ? _args[2] : "created_at";
-            sortDirection = _args.length > 3 && _args[3] !== undefined ? _args[3] : "desc";
+            sortDirection = _args.length > 2 && _args[2] !== undefined ? _args[2] : "desc";
             setLoading(true);
-            _context.prev = 5;
-            _context.next = 8;
+            _context.prev = 4;
+            _context.next = 7;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/turbine_inspections", {
               params: {
                 page: page,
                 search: search,
-                sortBy: sortBy,
+                sortBy: "created_at",
                 sortDirection: sortDirection
               }
             });
-          case 8:
+          case 7:
             response = _context.sent;
             console.log("API Response:", response.data);
             setTurbineInspections(response.data.data);
             setCurrentPage(response.data.current_page);
             setTotalPages(response.data.last_page);
             setLoading(false);
-            _context.next = 20;
+            _context.next = 19;
             break;
-          case 16:
-            _context.prev = 16;
-            _context.t0 = _context["catch"](5);
+          case 15:
+            _context.prev = 15;
+            _context.t0 = _context["catch"](4);
             console.log(_context.t0);
             setLoading(false);
-          case 20:
+          case 19:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[5, 16]]);
+      }, _callee, null, [[4, 15]]);
     }));
     return function fetchTurbineInspections() {
       return _ref2.apply(this, arguments);
@@ -8390,8 +8383,8 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
     setSelectedInspection(null);
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchTurbineInspections(currentPage, searchInput, sortBy, sortDirection);
-  }, [currentPage, searchInput.sortBy, sortDirection]);
+    fetchTurbineInspections(currentPage, searchInput, sortDirection);
+  }, [currentPage, searchInput, sortDirection]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "container mx-auto px-4 py-8",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
@@ -8421,20 +8414,33 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
               style: {
                 width: '5%'
               },
-              className: "bg-gray-100 border text-left px-8 py-4",
+              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
               children: "Ref"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
-              className: "bg-gray-100 border text-left px-8 py-4",
+              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
               children: "Turbine Name"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
-              className: "bg-gray-100 border text-left px-8 py-4",
+              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
               children: "Component Name"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
-              className: "bg-gray-100 border text-left px-8 py-4",
+              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
               children: "Grade"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("th", {
+              className: "bg-gray-100 border text-left px-8 py-4 cursor-pointer",
+              onClick: function onClick() {
+                return handleSort("created_at");
+              },
+              children: ["Date ", sortDirection === "asc" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSortUp
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSortDown
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
+              style: {
+                width: '5%'
+              },
               className: "bg-gray-100 border text-left px-8 py-4",
-              children: "Date"
+              children: "Actions"
             })]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("tbody", {

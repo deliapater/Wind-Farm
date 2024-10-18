@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faEye, faTrash, faSpinner, faChevronLeft, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faEye, faTrash, faSpinner, faChevronLeft, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "./Spinner";
 import InspectionModal from "./InspectionModal";
 import ConfirmationModal from "./ConfirmationModal";
@@ -30,7 +30,6 @@ const TurbineInspectionTable = ({inspections}) => {
     const [totalPages, setTotalPages] = useState(0)
     const [paginationData, setPaginationData] = useState({});
     const [loading, setLoading] = useState(true);
-    const [sortBy, setSortBy] = useState("created_at");
     const [sortDirection, setSortDirection] = useState("desc");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedInspection, setSelectedInspection] = useState(null)
@@ -43,21 +42,20 @@ const TurbineInspectionTable = ({inspections}) => {
         setCurrentPage(1);
     };
 
-    const handleSort = (column) => {
-        const newDirection = sortBy === column && sortDirection === 'asc' ? 'desc' : 'asc';
-        setSortBy(column);
+    const handleSort = () => {
+        const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
         setSortDirection(newDirection);
-        fetchTurbineInspections(1, searchInput, column, newDirection);
+        fetchTurbineInspections(currentPage, searchInput, newDirection);
     }
 
-    const fetchTurbineInspections = async (page = 1, search="", sortBy = "created_at", sortDirection = "desc") => {
+    const fetchTurbineInspections = async (page = 1, search="", sortDirection = "desc") => {
         setLoading(true);
         try {
             const response = await axios.get("/api/turbine_inspections", {
                 params: {
                     page,
                     search,
-                    sortBy,
+                    sortBy: "created_at",
                     sortDirection
                 },
             });
@@ -110,8 +108,8 @@ const TurbineInspectionTable = ({inspections}) => {
     };
 
     useEffect(() => {
-        fetchTurbineInspections(currentPage, searchInput, sortBy, sortDirection);
-    }, [currentPage, searchInput. sortBy, sortDirection]);
+        fetchTurbineInspections(currentPage, searchInput, sortDirection);
+    }, [currentPage, searchInput, sortDirection]);
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -142,20 +140,23 @@ const TurbineInspectionTable = ({inspections}) => {
             <table className="w-full rounded-full">
                 <thead>
                     <tr>
-                        <th style={{ width: '5%' }} className="bg-gray-100 border text-left px-8 py-4">
+                        <th style={{ width: '5%' }} className="bg-gray-100 border text-left px-8 py-4 cursor-pointer">
                             Ref
                         </th>
-                        <th className="bg-gray-100 border text-left px-8 py-4">
-                            Turbine Name
+                        <th className="bg-gray-100 border text-left px-8 py-4 cursor-pointer">
+                            Turbine Name 
                         </th>
-                        <th className="bg-gray-100 border text-left px-8 py-4">
+                        <th className="bg-gray-100 border text-left px-8 py-4 cursor-pointer">
                             Component Name
                         </th>
-                        <th className="bg-gray-100 border text-left px-8 py-4">
+                        <th className="bg-gray-100 border text-left px-8 py-4 cursor-pointer">
                             Grade
                         </th>
-                        <th className="bg-gray-100 border text-left px-8 py-4">
-                            Date
+                        <th className="bg-gray-100 border text-left px-8 py-4 cursor-pointer" onClick={() => handleSort("created_at")}>
+                            Date {sortDirection === "asc" ? <FontAwesomeIcon icon={faSortUp} /> : <FontAwesomeIcon icon={faSortDown} />}
+                        </th>
+                        <th style={{ width: '5%' }} className="bg-gray-100 border text-left px-8 py-4">
+                            Actions
                         </th>
                     </tr>
                 </thead>
