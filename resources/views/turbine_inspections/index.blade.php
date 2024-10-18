@@ -2,8 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Turbine Inspections</title>
+        <title>Wind Farm</title>
         <link rel="stylesheet" href="dist/styles.css?v=1.0" />
+        <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     </head>
     <body>
     @extends('layouts.app')
