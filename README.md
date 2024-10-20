@@ -93,11 +93,29 @@ Unit tests
 $ ./vendor/bin/sail test
 ```
 
-The application has been built with three entity models: Turbine, Component and TurbineInspection. A Turbine can have multiple Components and each Component can have multiple Inspections. The server-side of the application has been made with Laravel, the client-side with React.js and styling with Tailwind CSS. 
+## Project Overview
+This application is built with three main entity models: Turbine, Component, and TurbineInspection. A Turbine can have multiple Components, and each Component can have multiple Inspections.
 
-I have created a view that contains the turbine inspection list which contains a table and a search bar; and another view with the turbine inspection form. 
+### Technologies Used
+<b>Backend</b>: Laravel
+<b>Frontend</b>: React.js
+<b>Styling</b>: Tailwind CSS
+<b>FE testing</b>: Storybook
+<b>BE testing</b>: PHP Unit
 
-For the future I'm planning to implement API authentication, pagination for the list view, functionality for editing and deleting each record; also to add a modal inside the form to create a turbine and its components and then dynamically bind them to the selection dropdown inside turbine inspection form. This is because at the moment the options for selecting the turbines and components are hardcoded due to time constraints.
+### Features
+### Turbine Inspection List View
+- Displays a table of turbine inspections.
+- Includes a search bar for filtering inspections by Turbine or Component Name.
+- Supports backend pagination for navigating through the list.
+- Enables sorting by creation date.
 
-PD: I had tons of fun planing, designing, building and testing this project.
+### Turbine Inspection Form View
+- A dedicated form for creating turbine inspections.
 
+### Modals
+<b>Inspection Details Modal</b>: View details of each inspection.
+<b>Confirmation Modal</b>: Confirm deletion of an inspection.
+
+## Note
+I had tons of fun planing, designing, building and testing this project!
