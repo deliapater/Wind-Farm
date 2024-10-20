@@ -193,16 +193,28 @@ const TurbineInspectionTable = ({ inspections }) => {
                                                     <FontAwesomeIcon icon={faSpinner} spin className="text-blue-500" />
                                                 ) : (
                                                     <>
-                                                        <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700 mr-4" onClick={() => handleRowClick(turbineInspection)} />
-                                                        <FontAwesomeIcon
-                                                            icon={faTrash}
-                                                            className="cursor-pointer text-red-500"
-                                                            onClick={(e) => {
-                                                                e.stopPropagation()
-                                                                handleDeleteClick(turbineInspection)
-                                                            }
-                                                            }
-                                                        />
+                                                        <div className="relative group inline-block">
+                                                            <FontAwesomeIcon icon={faEye} className="text-blue-500 hover:text-blue-700 mr-4"
+                                                                onClick={() => handleRowClick(turbineInspection)}
+                                                            />
+                                                            <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover:opacity-100 bg-gray-700 text-white text-xs rounded py-1 px-2 pointer-events-none transition-opacity duration-300">
+                                                                View
+                                                            </span>
+                                                        </div>
+                                                        <div className="relative group inline-block">
+                                                            <FontAwesomeIcon
+                                                                icon={faTrash}
+                                                                className="cursor-pointer text-red-500"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation()
+                                                                    handleDeleteClick(turbineInspection)
+                                                                }
+                                                                }
+                                                            />
+                                                            <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover:opacity-100 bg-gray-700 text-white text-xs rounded py-1 px-2 pointer-events-none transition-opacity duration-300">
+                                                                Delete
+                                                            </span>
+                                                        </div>
                                                     </>
                                                 )}
                                             </td>
@@ -226,8 +238,8 @@ const TurbineInspectionTable = ({ inspections }) => {
                                 onClick={() => setCurrentPage(1)}
                                 disabled={currentPage === 1}
                                 className={`mx-2 px-4 py-2 rounded-full ${currentPage === 1
-                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                        : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
                                     }`}
                             >
                                 <FontAwesomeIcon icon={faAngleDoubleLeft} />
@@ -236,8 +248,8 @@ const TurbineInspectionTable = ({ inspections }) => {
                                 onClick={() => setCurrentPage(currentPage - 1)}
                                 disabled={currentPage === 1}
                                 className={`mx-2 px-4 py-2 rounded-full ${currentPage === 1
-                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                        : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
                                     }`}
                             >
                                 <FontAwesomeIcon icon={faChevronLeft} />
@@ -249,8 +261,8 @@ const TurbineInspectionTable = ({ inspections }) => {
                                 onClick={() => setCurrentPage(currentPage + 1)}
                                 disabled={currentPage >= totalPages}
                                 className={`mx-2 px-4 py-2 rounded-full ${currentPage >= totalPages
-                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                        : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
                                     }`}
                             >
                                 <FontAwesomeIcon icon={faChevronRight} />
@@ -259,8 +271,8 @@ const TurbineInspectionTable = ({ inspections }) => {
                                 onClick={() => setCurrentPage(totalPages)}
                                 disabled={currentPage >= totalPages}
                                 className={`mx-2 px-4 py-2 rounded-full ${currentPage >= totalPages
-                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                        : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
                                     }`}
                             >
                                 <FontAwesomeIcon icon={faAngleDoubleRight} />

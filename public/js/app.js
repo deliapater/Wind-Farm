@@ -8503,19 +8503,31 @@ var TurbineInspectionTable = function TurbineInspectionTable(_ref) {
                     spin: true,
                     className: "text-blue-500"
                   }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faEye,
-                      className: "text-blue-500 hover:text-blue-700 mr-4",
-                      onClick: function onClick() {
-                        return handleRowClick(turbineInspection);
-                      }
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faTrash,
-                      className: "cursor-pointer text-red-500",
-                      onClick: function onClick(e) {
-                        e.stopPropagation();
-                        handleDeleteClick(turbineInspection);
-                      }
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                      className: "relative group inline-block",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faEye,
+                        className: "text-blue-500 hover:text-blue-700 mr-4",
+                        onClick: function onClick() {
+                          return handleRowClick(turbineInspection);
+                        }
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                        className: "absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover:opacity-100 bg-gray-700 text-white text-xs rounded py-1 px-2 pointer-events-none transition-opacity duration-300",
+                        children: "View"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                      className: "relative group inline-block",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faTrash,
+                        className: "cursor-pointer text-red-500",
+                        onClick: function onClick(e) {
+                          e.stopPropagation();
+                          handleDeleteClick(turbineInspection);
+                        }
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                        className: "absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover:opacity-100 bg-gray-700 text-white text-xs rounded py-1 px-2 pointer-events-none transition-opacity duration-300",
+                        children: "Delete"
+                      })]
                     })]
                   })
                 })]
