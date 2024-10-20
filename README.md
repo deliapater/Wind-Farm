@@ -103,19 +103,28 @@ This application is built with three main entity models: Turbine, Component, and
 <b>FE testing</b>: Storybook
 <b>BE testing</b>: PHP Unit
 
+The application is responsive, ensuring a seamless experience across desktop, tablet, and mobile devices.
+
 ### Features
 ### Turbine Inspection List View
+![Turbine Inspection Application Screenshot](images/inspec_table.png)
 - Displays a table of turbine inspections.
 - Includes a search bar for filtering inspections by Turbine or Component Name.
 - Supports backend pagination for navigating through the list.
 - Enables sorting by creation date.
 
 ### Turbine Inspection Form View
+![Turbine Inspection Application Screenshot](images/form.png)
 - A dedicated form for creating turbine inspections.
 
 ### Modals
 <b>Inspection Details Modal</b>: View details of each inspection.
+![Turbine Inspection Application Screenshot](images/details_modal.png)
 <b>Confirmation Modal</b>: Confirm deletion of an inspection.
+![Turbine Inspection Application Screenshot](images/confirmation_modal.png)
+
+### Storybook
+![Turbine Inspection Application Screenshot](images/storybook.png)
 
 ## Note
 I had tons of fun planing, designing, building and testing this project!
