@@ -107,24 +107,24 @@ The application is responsive, ensuring a seamless experience across desktop, ta
 
 ### Features
 ### Turbine Inspection List View
-![Turbine Inspection Application Screenshot](images/inspec_table.png)
+![Turbine Inspection Application Screenshot](public/images/inspec_table.png)
 - Displays a table of turbine inspections.
 - Includes a search bar for filtering inspections by Turbine or Component Name.
 - Supports backend pagination for navigating through the list.
 - Enables sorting by creation date.
 
 ### Turbine Inspection Form View
-![Turbine Inspection Application Screenshot](images/form.png)
+![Turbine Inspection Application Screenshot](public/images/form.png)
 - A dedicated form for creating turbine inspections.
 
 ### Modals
 <b>Inspection Details Modal</b>: View details of each inspection.
-![Turbine Inspection Application Screenshot](images/details_modal.png)
+![Turbine Inspection Application Screenshot](public/images/details_modal.png)
 <b>Confirmation Modal</b>: Confirm deletion of an inspection.
-![Turbine Inspection Application Screenshot](images/confirmation_modal.png)
+![Turbine Inspection Application Screenshot](public/images/confirmation_modal.png)
 
 ### Storybook
-![Turbine Inspection Application Screenshot](images/storybook.png)
+![Turbine Inspection Application Screenshot](public/images/storybook.png)
 
 ## Note
 I had tons of fun planing, designing, building and testing this project!
