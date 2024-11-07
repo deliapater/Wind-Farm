@@ -14,7 +14,9 @@ class TurbineInspection extends Model
     protected $fillable = [
         'component_id',
         'turbine_id',
-        'grade'
+        'grade',
+        'inspected_at',
+        'inspected_by'
     ];
 
     public function component()
@@ -25,5 +27,10 @@ class TurbineInspection extends Model
     public function turbine()
     {
         return $this->belongsTo(Turbine::class);
+    }
+
+    public function inspector()
+    {
+        return $this->belongsTo(User::class, 'inspected_by');
     }
 }

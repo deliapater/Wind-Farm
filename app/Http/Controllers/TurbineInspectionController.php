@@ -28,24 +28,30 @@ class TurbineInspectionController extends Controller
             });
         }
 
-        $sortBy = $request->get('sortBy', 'created_at');
+        $sortBy = $request->get('sortBy', 'inspected_at');
         $sortDirection =  $request->get('sortDirection', 'desc');
 
-        $allowedSorts = ['turbine.name', 'component.name', 'grade', 'created_at'];
+        $allowedSorts = ['turbine.name', 'component.name', 'grade', 'created_at', 'inspected_at'];
         if (!in_array($sortBy, $allowedSorts)) {
-            $sortBy = 'created_at';
+            $sortBy = 'inspected_at';
         }
 
-        if ($sortBy === 'turbine.name' || $sortBy === 'component.name') {
-            $query->join($aoertBy === 'turbine.name' ? 'turbines' : 'components', $sortBy === 'turbine.name' ? 'turbines.id' : 'components.id', '=', $sortBy === 'turbine.name' ? 'turbine_inspections.turbine_id' : 'turbine_inspections.component_id')
-                ->orderBy($sortBy, $sortDirection);
-        } else {
-            $query->orderBy($sortBy, $sortDirection);
-        }
-        $turbine_inspections = $query->paginate(10);
-        \Log::info($turbine_inspections);
-        return response()->json($turbine_inspections);
+     if ($sortBy === 'turbine.name') {
+        $query->join('turbines', 'turbine_inspections.turbine_id', '=', 'turbines.id')
+            ->orderBy('turbines.name', $sortDirection);
+    } elseif ($sortBy === 'component.name') {
+        $query->join('components', 'turbine_inspections.component_id', '=', 'components.id')
+            ->orderBy('components.name', $sortDirection);
+    } else {
+        // For other allowed columns, including inspected_at
+        $query->orderBy($sortBy, $sortDirection);
     }
+
+    $turbine_inspections = $query->paginate(10);
+
+    \Log::info($turbine_inspections);
+    return response()->json($turbine_inspections);
+ }
 
     /**
      * Show the form for creating a new resource.
@@ -131,6 +137,16 @@ class TurbineInspectionController extends Controller
         $inspection->delete();
 
         return response()->json(['message' => 'Inspection deleted successfully'], 204);
+    }
+
+    public function showInspectionHistory($turbineId)
+    {
+        $history = TurbineInspection::where('turbine_id', $turbineId)
+            ->with(['component', 'inspector'])
+            ->orderBy('inspected_at', 'desc')
+            ->get();
+
+        return response()->json($history);
     }
 
 }

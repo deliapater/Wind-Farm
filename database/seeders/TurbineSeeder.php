@@ -36,7 +36,7 @@ class TurbineSeeder extends Seeder
 
         $componentC1 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Blade', 'image' => 'images/blade.webp', 'description' => 'This is the blade of the turbine, which converts wind energy into rotational energy.']);
         $componentC2 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Rotor', 'image' => 'images/rotor.jpg', 'description' => 'The rotor is the rotating part of the turbine that harnesses wind energy.']);
-        $componentC3 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Hub', 'image' => 'mages/hub.jpeg', 'description' => 'The hub connects the blades and the rotor to the generator.']);
+        $componentC3 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Hub', 'image' => 'images/hub.jpeg', 'description' => 'The hub connects the blades and the rotor to the generator.']);
         $componentC4 = Component::factory()->create(['turbine_id' => $turbine3->id, 'name' => 'Generator', 'image' => 'images/generator.jpeg', 'description' => 'The generator converts mechanical energy into electrical energy.']);
 
         // Create inspections for each component

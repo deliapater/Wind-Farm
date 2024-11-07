@@ -23,7 +23,7 @@ const gradeColorMap = {
     5: "bg-gray-200",     // Completely Broken/Missing
 };
 
-const TurbineInspectionTable = ({ inspections }) => {
+const TurbineInspectionTable = ({ turbineId }) => {
     const [turbineInspections, setTurbineInspections] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -51,11 +51,15 @@ const TurbineInspectionTable = ({ inspections }) => {
     const fetchTurbineInspections = async (page = 1, search = "", sortDirection = "desc") => {
         setLoading(true);
         try {
-            const response = await axios.get("/api/turbine_inspections", {
+            const endpoint = turbineId
+                ? `/api/turbines/${turbineId}/inspections`
+                : `/api/turbine_inspections`;
+
+            const response = await axios.get(endpoint, {
                 params: {
                     page,
                     search,
-                    sortBy: "created_at",
+                    sortBy: "inspected_at",
                     sortDirection
                 },
             });
